@@ -1,4 +1,4 @@
-<h2 align='center'>AutoIQ : Car Price Prediction</h2>
+<h2 align='center'>AutoIQ : Used Car Pricing System</h2>
 
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ by Motor.co" src="https://github.com/user-attachments/assets/e34c618f-2773-4a1c-b632-9c822338918b"></a>
 
