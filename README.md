@@ -564,11 +564,11 @@ docker run --env-file .env -p 8000:8000 your_image_name /
 ```
 
 > [!NOTE]
-> `api.main` → Refers to the main.py file inside the api folder.
+> `api.main` : Refers to the main.py file inside the api folder.
 > 
-> `app` → The FastAPI instance defined in your code.
+> `app` : The FastAPI instance defined in your code.
 > 
-> `--reload` → Automatically reloads when code changes (development only).
+> `--reload` : Automatically reloads when code changes (development only).
 
 ### 5. Access the FastAPI Server
 Once the container is running, open your browser and navigate to :
