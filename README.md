@@ -609,7 +609,7 @@ Once the FastAPI server is running, you can test the API endpoints in Postman or
 
 #### GET Method
 - Retrieve information from the server without modifying any data.
-#### → Steps
+#### Steps
 - Open Postman and create a new request.
 - Set the HTTP method to "GET" from the dropdown menu.
 - Enter the endpoint URL you want to query.
@@ -617,7 +617,7 @@ Once the FastAPI server is running, you can test the API endpoints in Postman or
 http://127.0.0.1:8000
 ```
 - Click the "Send" button to submit the request.
-#### → Expected Response
+#### Expected Response
 - **Status Code :** It indicates that the request was successful and the server responded with the requested data.
 ```
 200 OK
@@ -638,14 +638,14 @@ http://127.0.0.1:8000
 
 #### POST Method
 - Send data to a server to create/update a resource.
-#### → Steps
+#### Steps
 - Open Postman and create a new request.
 - Set the HTTP method to "POST" from the dropdown menu.
 - Enter the endpoint URL you want to query.
 ```
 http://127.0.0.1:8000/predict
 ```
-- Navigate to the "Headers" tab and add the following : Key → `Content-Type`, Value → `application/json`
+- Navigate to the "Headers" tab and add the following : Key as `Content-Type`, Value as `application/json`
 - Go to the "Body" tab, Select "raw", then choose "JSON" from the format dropdown menu.
 - Enter the request payload in JSON format.
 ```json
@@ -661,7 +661,7 @@ http://127.0.0.1:8000/predict
 }
 ```
 - Click the "Send" button to submit the request.
-#### → Expected Response
+#### Expected Response
 - **Status Code :** It indicates that the server successfully processed the request and generated a prediction.
 ```
 200 OK
