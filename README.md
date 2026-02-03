@@ -607,9 +607,9 @@ Once the FastAPI server is running, you can test the API endpoints in Postman or
 <details>
 <summary>Click Here for details about GET Method</summary>
 
-#### GET Method
+### GET Method
 - Retrieve information from the server without modifying any data.
-#### Steps
+### Steps
 - Open Postman and create a new request.
 - Set the HTTP method to "GET" from the dropdown menu.
 - Enter the endpoint URL you want to query.
@@ -617,7 +617,7 @@ Once the FastAPI server is running, you can test the API endpoints in Postman or
 http://127.0.0.1:8000
 ```
 - Click the "Send" button to submit the request.
-#### Expected Response
+### Expected Response
 - **Status Code :** It indicates that the request was successful and the server responded with the requested data.
 ```
 200 OK
@@ -636,9 +636,9 @@ http://127.0.0.1:8000
 <details>
 <summary>Click Here for details about POST Method</summary>
 
-#### POST Method
+### POST Method
 - Send data to a server to create/update a resource.
-#### Steps
+### Steps
 - Open Postman and create a new request.
 - Set the HTTP method to "POST" from the dropdown menu.
 - Enter the endpoint URL you want to query.
@@ -661,7 +661,7 @@ http://127.0.0.1:8000/predict
 }
 ```
 - Click the "Send" button to submit the request.
-#### Expected Response
+### Expected Response
 - **Status Code :** It indicates that the server successfully processed the request and generated a prediction.
 ```
 200 OK
@@ -685,12 +685,12 @@ Follow these steps carefully to containerize your project with Docker :
 
 ### 1. Install Docker
 - Before starting, make sure Docker is installed on your system.
-- Visit [Docker](https://www.docker.com/) → Click on Download Docker Desktop → Choose Windows / Mac / Linux
+- Visit [Docker](https://www.docker.com/), Click on Download Docker Desktop, Choose Windows / Mac / Linux
 
 <img title="docker" src="https://github.com/user-attachments/assets/200fd0a3-68f1-40d7-b1a7-299f0d6aae8e">
 
 ### 2. Verify the Installation
-- Open Docker Desktop → Make sure Docker Engine is Running
+- Open Docker Desktop, Make sure Docker Engine is Running
 
 <img title="docker-desktop" src="https://github.com/user-attachments/assets/5599f2fb-f1c1-4f0e-bc21-15fd31845270">
 
@@ -934,35 +934,30 @@ Follow these steps carefully to deploy your FastAPI application on Render :
 ## Application
 
 The frontend application files are in the project root :
-- `index.html` → This file defines the structure and layout of the web page.
-- `style.css` → This file handles the visual appearance of the web page.
-- `script.js` → This file communicates between the web page and the API.
+- `index.html` : This file defines the structure and layout of the web page.
+- `style.css` : This file handles the visual appearance of the web page.
+- `script.js` : This file communicates between the web page and the REST API.
 
-<details>
-<summary>Click Here for more Details</summary>
-&nbsp;
-
-Remember to update the API URL in `script.js` when deploying on GitHub Pages to get real-time predictions.  
-
-Change from :  
-```js
-const fetchPromise = fetch("http://127.0.0.1:8000/predict", {
-     method: "POST",
-     headers: { "Content-Type": "application/json" },
-     body: JSON.stringify(data),
- });
-```  
-  
- To :  
- ```js
- const fetchPromise = fetch("https://your_api_name.onrender.com/predict", {
-     method: "POST",
-     headers: { "Content-Type": "application/json" },
-     body: JSON.stringify(data),
- });
-```
-
-</details>
+> [!IMPORTANT]
+> Remember to update the API URL in `script.js` when deploying on GitHub Pages to get real-time predictions.  
+>
+> Change from :  
+> ```js
+> const fetchPromise = fetch("http://127.0.0.1:8000/predict", {
+>      method: "POST",
+>      headers: { "Content-Type": "application/json" },
+>      body: JSON.stringify(data),
+> });
+> ```  
+>   
+> To :  
+> ```js
+> const fetchPromise = fetch("https://your_api_name.onrender.com/predict", {
+>     method: "POST",
+>     headers: { "Content-Type": "application/json" },
+>     body: JSON.stringify(data),
+> });
+> ```
 
 <details>
 <summary>Click Here for an Important Note</summary>
