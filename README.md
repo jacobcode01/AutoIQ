@@ -685,12 +685,12 @@ Follow these steps carefully to containerize your project with Docker :
 
 ### 1. Install Docker
 - Before starting, make sure Docker is installed on your system.
-- Visit [Docker](https://www.docker.com/) ➜ Click on Download Docker Desktop ➜ Choose Windows / Mac / Linux
+- Visit [Docker](https://www.docker.com/) ➜ Click on Download Docker Desktop ➜ Choose Windows / Mac / Linux.
 
 <img title="docker" src="https://github.com/user-attachments/assets/200fd0a3-68f1-40d7-b1a7-299f0d6aae8e">
 
 ### 2. Verify the Installation
-- Open Docker Desktop ➜ Make sure Docker Engine is Running
+- Open Docker Desktop ➜ Make sure Docker Engine is Running.
 
 <img title="docker-desktop" src="https://github.com/user-attachments/assets/5599f2fb-f1c1-4f0e-bc21-15fd31845270">
 
