@@ -897,6 +897,8 @@ cars.head()
 ```
 </details>
 
+<hr>
+
 ### 2. Split the Data
 
 <details>
@@ -912,6 +914,8 @@ y = cars['price']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 ```
 </details>
+
+<hr>
 
 ### 3. Build Preprocessing Pipeline
 
@@ -950,6 +954,8 @@ ctf = ColumnTransformer(transformers=[
 ], remainder='passthrough', n_jobs=-1)
 ```
 </details>
+
+<hr>
 
 ### 4. Evaluate Multiple Models
 
@@ -1047,6 +1053,8 @@ Standard Deviation of R2-Score : 0.02
 
 </details>
 
+<hr>
+
 ### 5. Creating Stacking Regressor
 
 <details>
@@ -1096,6 +1104,8 @@ Standard Deviation of R2-Score : 0.01
 
 </details>
 
+<hr>
+
 ### 6. Performance Evaluation Graphs
 
 #### Actual vs Predicted Plot
@@ -1120,6 +1130,8 @@ Standard Deviation of R2-Score : 0.01
 | <img title="lr-curve" src="https://github.com/user-attachments/assets/56912d24-f2a6-4c3b-95ce-a0489fa1652a"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/4fb325ac-90f8-4420-839e-6fdc187bbbf8"> |
 
 </details>
+
+<hr>
 
 ### 7. Hyperparameter Tuning
 
@@ -1157,6 +1169,8 @@ rcv.fit(X_train, y_train)
 best_model = rcv.best_estimator_
 ```
 </details>
+
+<hr>
 
 ### 8. Performance Evaluation Comparison
 
