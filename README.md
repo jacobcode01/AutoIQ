@@ -1,3 +1,6 @@
+<img width="752" height="1251" alt="image" src="https://github.com/user-attachments/assets/ede07528-7e2a-4278-ae8d-f75cc1422a7d" />
+
+
 <h2 align='center'>AutoIQ : Used Car Pricing System</h2>
 
 <p align="center">
