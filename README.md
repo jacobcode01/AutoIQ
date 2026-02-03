@@ -862,16 +862,15 @@ The frontend application files are in the project root :
 > });
 > ```
 
-<details>
-<summary>Click Here for an Important Note</summary>
-&nbsp;
-
-- The API for this project is deployed using the free tier on Render.
-- As a result, it may go to sleep after periods of inactivity.
-- Please start the API first by visiting the API URL. Then, navigate to the website to make predictions.
-- If the API was inactive, the first prediction may take a few seconds while the server spins back up.
-
-</details>
+> [!NOTE]
+>
+> The API for this project is deployed using the free tier on Render.
+>
+> As a result, it may go to sleep after periods of inactivity.
+> 
+> Please start the API first by visiting the API URL. Then, navigate to the website to make predictions.
+> 
+> If the API was inactive, the first prediction may take a few seconds while the server spins back up.
 
 You can open `index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server).
 
