@@ -1,37 +1,30 @@
 <h2 align='center'>AutoIQ : Used Car Pricing System</h2>
 
 <p align="center">
-  <!-- Live Demo -->
   <a href="https://themrityunjaypathak.github.io/AutoIQ/" target="_blank">
     <img src="https://img.shields.io/badge/Live%20Demo-Website-E34F26?style=flat&logo=html5&logoColor=white" />
   </a>
   
-  <!-- Python -->
   <a href="https://www.python.org/" target="_blank">
     <img src="https://img.shields.io/badge/Python-v3.11-3776AB?style=flat&logo=python&logoColor=white" />
   </a>
 
-  <!-- Pandas -->
   <a href="https://pandas.pydata.org/" target="_blank">
     <img src="https://img.shields.io/badge/Pandas-v2.3-150458?style=flat&logo=pandas&logoColor=white" />
   </a>
 
-  <!-- Scikit-learn -->
   <a href="https://scikit-learn.org/stable/" target="_blank">
     <img src="https://img.shields.io/badge/scikit--learn-v1.7-F7931E?style=flat&logo=scikit-learn&logoColor=white" />
   </a>
 
-  <!-- FastAPI -->
   <a href="https://autoiq.onrender.com/docs" target="_blank">
     <img src="https://img.shields.io/badge/FastAPI-v0.116-009688?style=flat&logo=fastapi&logoColor=white" />
   </a>
 
-  <!-- Docker -->
   <a href="https://hub.docker.com/r/themrityunjaypathak/autoiq" target="_blank">
     <img src="https://img.shields.io/badge/Docker-v29.1-2496ED?style=flat&logo=docker&logoColor=white" />
   </a>
 
-  <!-- Git -->
   <a href="https://git-scm.com/" target="_blank">
     <img src="https://img.shields.io/badge/Git-v2.47-F05032?style=flat&logo=git&logoColor=white" />
   </a>
@@ -65,11 +58,11 @@
 
 ## Overview
 - Built and deployed an end-to-end machine learning pipeline to predict used car prices from real-world data.
-- Collected and cleaned 2,800+ used car records from Cars24 using Selenium and BeautifulSoup.
+- Collected and cleaned 2,800+ used car listings from Cars24 using Selenium and BeautifulSoup.
 - Optimized dataset memory usage by 90% through downcasting data types and converting to Parquet format.
 - Trained models with Scikit-learn Pipelines & ColumnTransformer to avoid data leakage.
 - Deployed the machine learning model as an API using FastAPI on Render.
-- Built a HTML/CSS/JS frontend hosted on GitHub Pages to interact with the REST API and display predictions.
+- Built an HTML/CSS/JS frontend hosted on GitHub Pages to interact with the REST API and display predictions.
 - Containerized the entire application using Docker and pushed to Docker Hub for reproducibility.
 
 <hr>
@@ -178,12 +171,12 @@ flowchart TB
 <hr>
 
 ## Impact
-- Improved model performance with 30% lower MAE and 12% higher R2 score compared to the baseline model.
-- Increased prediction reliability by reducing error variance by 70%, delivering more stable price estimates.
+- Achieved a 30% lower MAE and a 12% higher R2 score compared to the baseline regression model.
+- Reduced prediction error variance by 70%, ensuring more stable and reliable predictions.
 - Optimized data processing by reducing dataset memory usage by 90%, improving training speed and efficiency.
-- Deployed the trained ML model as a production-ready FastAPI service to serve real-time predictions.
-- Designed an interactive web interface that connects to the API and provides instant used car price estimates.
-- Ensured reproducibility and portability by containerizing the full ML pipeline using Docker.
+- Deployed the pipeline as a production-ready FastAPI service to serve real-time predictions.
+- Designed an interactive web interface that connects to the API and provides used car price estimates.
+- Ensured reproducibility and portability by containerizing the full machine learning pipeline using Docker.
 
 <hr>
 
