@@ -12,7 +12,7 @@
 
 </div>
 
-<a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ by Motor.co" src="https://github.com/user-attachments/assets/e34c618f-2773-4a1c-b632-9c822338918b"></a>
+<a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ by Motor.co" src="https://github.com/user-attachments/assets/ab33b9bd-16fa-424f-a19c-96fb1ad26f97"></a>
 
 ## Table of Contents
 - [Problem Statement](#problem-statement)
