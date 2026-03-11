@@ -1,4 +1,4 @@
-<h2 align='center'>AutoIQ : Used Car Pricing System</h2>
+<h3 align='center'>AutoIQ : Used Car Pricing System</h3>
 
 <div align="center">
 
