@@ -2,6 +2,10 @@
 
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ by Motor.co" src="https://github.com/user-attachments/assets/ab33b9bd-16fa-424f-a19c-96fb1ad26f97"></a>
 
+<div align="center">
+  <a href="">Live Demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">Swagger UI</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">Docker Hub</a>
+</div>
+
 ## Table of Contents
 - [Problem Statement](#problem-statement)
 - [Overview](#overview)
