@@ -5,7 +5,7 @@
 [![Live Demo](https://img.shields.io/badge/Live-Demo-E34F26?style=flat&logo=html5&logoColor=white)](https://themrityunjaypathak.github.io/AutoIQ/)
 [![API Docs](https://img.shields.io/badge/API-Docs-009688?style=flat&logo=fastapi&logoColor=white)](https://autoiq.onrender.com/docs)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![Pandas](https://img.shields.io/badge/Pandas-3413AD?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-4420C7?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/stable/)
 [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=selenium&logoColor=white)](https://www.selenium.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
