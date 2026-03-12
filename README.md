@@ -859,8 +859,6 @@ You can open `index.html` directly in your browser or serve it via a local HTTP 
 
 Access the live Website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
-<a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="frontend-ui" src="https://github.com/user-attachments/assets/00ee1b2c-7f27-471f-bf13-59b5bb916dac"></a>
-
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="frontend-ui" src="https://github.com/user-attachments/assets/efa1a464-fb31-4ecf-8d20-4bee11723745"></a>
 
 <hr>
