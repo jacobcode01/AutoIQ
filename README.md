@@ -1,3 +1,5 @@
+<h3 align='center'>AutoIQ : Used Car Pricing System</h3>
+
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ by Motor.co" src="https://github.com/user-attachments/assets/ab33b9bd-16fa-424f-a19c-96fb1ad26f97"></a>
 
 ## Table of Contents
