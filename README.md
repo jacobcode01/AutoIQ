@@ -2,6 +2,12 @@
   <h1>Mrityunjay Pathak</h1> 
 </div>
 
+<div align="center">
+  
+[![Live Site](https://img.shields.io/badge/status-live-brightgreen)](https://themrityunjaypathak.github.io) ![License](https://img.shields.io/badge/license-MIT-green) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-blue?logo=linkedin)](https://www.linkedin.com/in/themrityunjaypathak)
+
+</div>
+
 <a href="https://themrityunjaypathak.github.io">
   <img title="Mrityunjay's Portfolio" src="https://github.com/user-attachments/assets/f99aab1f-fd56-4a10-8f03-ccba3cad4916" />
 </a>
