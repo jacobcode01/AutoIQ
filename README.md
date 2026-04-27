@@ -2,10 +2,14 @@
   <h1>Mrityunjay Pathak</h1>
 </div>
 
+[![Deploy Status](https://img.shields.io/badge/Deploy-Live-22C55E?style=flat&logo=githubactions&logoColor=white)](https://themrityunjaypathak.github.io/)
+
+![HTML](https://img.shields.io/badge/HTML5-F5F5F5?style=flat&logo=html5&logoColor=E34F26)
+![CSS](https://img.shields.io/badge/CSS3-EDEDED?style=flat&logo=css&logoColor=1572B6)
+![JavaScript](https://img.shields.io/badge/JavaScript-F5F5F5?style=flat&logo=javascript&logoColor=F7DF1E)
+![Fonts](https://img.shields.io/badge/Fonts-F5F5F5?style=flat&logo=googlefonts&logoColor=4285F4)
+
 <img title="Mrityunjay's Portfolio" src="https://github.com/user-attachments/assets/2f7ec0bd-5b40-47ad-b9a3-82790a897e17" />
-
-<img width="1080" height="1080" alt="Untitled design" src="https://github.com/user-attachments/assets/fe3ccd62-ce06-4b21-8f58-be0dad9c4507" />
-
 
 <hr>
 
