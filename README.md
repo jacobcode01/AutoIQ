@@ -4,7 +4,7 @@
 
 <div align="center">
   
-[![Live Site](https://img.shields.io/badge/status-live-brightgreen)](https://themrityunjaypathak.github.io) ![License](https://img.shields.io/badge/license-MIT-green) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-blue?logo=linkedin)](https://www.linkedin.com/in/themrityunjaypathak)
+[![Live Site](https://img.shields.io/badge/status-live-brightgreen)](https://themrityunjaypathak.github.io) [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/MIT) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-blue?logo=linkedin)](https://www.linkedin.com/in/themrityunjaypathak)
 
 </div>
 
