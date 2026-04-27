@@ -4,7 +4,9 @@
 
 <div align="center">
   
-[![Live Site](https://img.shields.io/badge/status-live-brightgreen)](https://themrityunjaypathak.github.io) [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/MIT) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-blue?logo=linkedin)](https://www.linkedin.com/in/themrityunjaypathak)
+[![Live Site](https://img.shields.io/badge/status-live-brightgreen)](https://themrityunjaypathak.github.io) [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/MIT) ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css&logoColor=EDEDED)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-blue?logo=linkedin)](https://www.linkedin.com/in/themrityunjaypathak)
 
 </div>
 
