@@ -1,8 +1,6 @@
-## Mrityunjay Pathak ![HTML](https://img.shields.io/badge/HTML5-F5F5F5?style=flat&logo=html5&logoColor=E34F26) ![CSS](https://img.shields.io/badge/CSS3-EDEDED?style=flat&logo=css&logoColor=1572B6)  ![JavaScript](https://img.shields.io/badge/JavaScript-F5F5F5?style=flat&logo=javascript&logoColor=F7DF1E) ![Fonts](https://img.shields.io/badge/Fonts-F5F5F5?style=flat&logo=googlefonts&logoColor=4285F4)
-
-[![Deploy Status](https://img.shields.io/badge/Deploy-Live-22C55E?style=flat&logo=githubactions&logoColor=white)](https://themrityunjaypathak.github.io/)
-
-
+<div align="center" id="top">
+  <h1>Mrityunjay Pathak</h1> 
+</div>
 
 <img title="Mrityunjay's Portfolio" src="https://github.com/user-attachments/assets/2f7ec0bd-5b40-47ad-b9a3-82790a897e17" />
 
@@ -77,4 +75,11 @@ cd portfolio
 
 <hr>
 
-## Color Reference
+## License
+- This project is licensed under the [MIT License](LICENSE). You are free to use and modify the code as needed.
+
+<div align="left">
+  
+**[`^        Scroll to Top       ^`](#top)**
+
+</div>
