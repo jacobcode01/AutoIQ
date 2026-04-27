@@ -1,5 +1,5 @@
 <div align="center" id="top">
-  <h3>Mrityunjay Pathak</h3> 
+  <h2>Mrityunjay Pathak</h2> 
 </div>
 
 <div align="center">
