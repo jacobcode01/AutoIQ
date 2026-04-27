@@ -1,4 +1,5 @@
-## Mrityunjay Pathak | [![pages-build-deployment](https://github.com/themrityunjaypathak/themrityunjaypathak.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/themrityunjaypathak/themrityunjaypathak.github.io/actions/workflows/pages/pages-build-deployment)
+<div align="center">
+  <h1>Mrityunjay Pathak</h1>
+</div>
 
-<img title="Mrityunjay's Portfolio" src="https://github.com/user-attachments/assets/ce5ec024-3a5a-4b29-9283-81a2e1484f77" />
-
+<img title="Mrityunjay's Portfolio" src="https://github.com/user-attachments/assets/2f7ec0bd-5b40-47ad-b9a3-82790a897e17" />
