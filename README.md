@@ -6,6 +6,37 @@
 
 <hr>
 
+## Features
+
+### Fontshare
+- The website uses **Fontshare** for modern, high-quality typography.
+- It provides clean, professional fonts like *Satoshi* that enhance readability.
+- Optimized for performance and consistency across different devices.
+
+<a href="https://www.fontshare.com/">
+<img title="Fontshare" src="https://github.com/user-attachments/assets/9110673e-6d89-4a5a-9f73-a8d6411d4fde">
+</a>
+
+### Hugeicons
+- Icons across the website are powered by **Hugeicons**.
+- Provides a consistent, minimal stroke-based icon style.
+- Lightweight and easy to integrate with customizable sizes and styles.
+
+<a href="https://hugeicons.com/">
+<img title="Hugeicons" src="https://github.com/user-attachments/assets/4b572c7a-03af-4fa5-96c8-f96dc9402974">
+</a>
+
+### Flaticon
+- Additional icons and visual assets are sourced from **Flaticon**.
+- Offers a wide variety of icons for different use cases.
+- Helps maintain visual clarity while keeping the design minimal.
+
+<a href="https://www.flaticon.com/">
+<img title="Flaticon" src="https://github.com/user-attachments/assets/d79a0000-e5ce-4692-b3b9-5277d3913563">
+</a>
+
+<hr>
+
 ## Installation
 - First, you need to clone the repository from GitHub to your local system.
 ```bash
@@ -45,5 +76,3 @@ cd portfolio
 <hr>
 
 ## Color Reference
-
-Background | `#ffffff`
