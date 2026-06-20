@@ -98,6 +98,8 @@
 
 </details>
 
+---
+
 ### Data Extraction Script (`get_car_details`)
 
 <details>
@@ -169,7 +171,7 @@
     - `clean_specs[1]` → `fuel_type`
     - `clean_specs[2]` → `transmission`
     - `clean_specs[3]` → `owner`
-- `clean_specs[4]` → `number_plate` exists but is not relevant.
+    - `clean_specs[4]` → `number_plate` exists but is not relevant.
 
 #### 5. Extract Price Values
 - `soup.find_all('p', 'sc-braxZu cyPhJl')` collects price elements into `price` list.
@@ -212,6 +214,8 @@
 
 </details>
 
+---
+
 ### Engine Capacity Script (`get_engine_capacity`)
 
 <details>
@@ -250,6 +254,8 @@
 - Outputs a list of engine capacities in the same order as the input URLs.
 
 </details>
+
+---
 
 ### Combine Data from Multiple Cities
 
@@ -306,6 +312,8 @@ df['engine_capacity'] = engine_capacity
 df.head()
 ```
 </details>
+
+---
 
 ### Dataset Description
 
