@@ -1,4 +1,4 @@
-<h3 align="center">AutoIQ : Used Car Pricing System</h3>
+<h3 align="center" id="top">AutoIQ : Used Car Pricing System</h3>
 
 <div align="center">
 
@@ -378,71 +378,9 @@ ALLOWED_ORIGINS=list_of_URLs_that_are_allowed_to_access_the_API
 - Load and validate environment variables from `.env`.
 - Uses Pydantic `BaseSettings` to read environment variables, validate types and provide easy access.
 
-<details>
-<summary>Click Here to view Example Python File</summary>
-<br>
-
-```python
-# api/config.py
-import os
-from pathlib import Path
-from typing import List
-from pydantic_settings import BaseSettings
-
-# Required Environment Variables
-class Settings(BaseSettings):
-    ENV: str = "dev"
-    MAE: int
-    PIPE_PATH: Path
-    MODEL_FREQ_PATH: Path
-    ALLOWED_ORIGINS: str  # Comma-separated
-
-    # Convert ALLOWED_ORIGINS string into a list
-    @property
-    def cors_origins(self) -> List[str]:
-        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
-
-     # Load .env locally (development), but skips in Render (deployment)
-    class Config:
-        env_file = ".env" if not os.getenv("RENDER") else None
-
-# Create an object of Settings class
-settings = Settings()
-```
-</details>
-
 #### `main.py` file
 - Uses `settings` from `config.py` in FastAPI.
 - Imports the `settings` object to provide API's metadata dynamically from `.env`.
-
-<details>
-<summary>Click Here to view Example Python File</summary>
-<br>
-
-```python
-# api/main.py
-import pickle
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from api.config import settings
-
-app = FastAPI(title="AutoIQ")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.cors_origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"],
-)
-
-with open(settings.PIPE_PATH, "rb") as f:
-    pipe = pickle.load(f)
-
-with open(settings.MODEL_FREQ_PATH, "rb") as f:
-    model_freq = pickle.load(f)
-```
-</details>
 
 ### 4. Run the Docker Container
 Start the application using Docker. This will run the FastAPI server and handle all the dependencies automatically.
@@ -585,106 +523,10 @@ Follow these steps carefully to containerize your project with Docker :
 ### 3. Create the Dockerfile
 - Create a `Dockerfile` and place it in the root folder of your Repository.
 
-<details>
-<summary>Click Here to view Example Dockerfile</summary>
-<br>
-
-```Dockerfile
-# Start with the official Python 3.11 image.
-# -slim means this is a smaller Debian-based image with fewer preinstalled packages, which makes it lighter.
-FROM python:3.11-slim
-
-# Install required system packages for Python libraries.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    g++ \
-    python3-dev \
-    libopenblas-dev \
-    liblapack-dev \
-    gfortran \
- && rm -rf /var/lib/apt/lists/*
-
-# Set the working directory to /app inside the container.
-# All future commands (COPY, RUN, CMD) will be executed from here.
-WORKDIR /app
-
-# Copies your local requirements.txt into the container's /app folder.
-COPY requirements.txt .
-
-# Install all the dependencies from requirements.txt.
-# --no-cache-dir prevents pip from keeping installation caches, making the image smaller.
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copies all the remaining project files (Flask API, HTML, CSS, JS, etc.) into /app.
-COPY . .
-
-# Expose FastAPI port, so it can be accessed from outside the container.
-EXPOSE 8000
-
-# Default command to run the FastAPI app with Uvicorn in production mode.
-# --host 0.0.0.0 allows external connections (necessary in Docker).
-# --port 8000 specifies the port.
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-</details>
-
 ### 4. Create the `.dockerignore` File
 - This file tells Docker which files and folders to exclude from the image.
 - This keeps the image small and prevents unnecessary files from being copied.
 - A `.dockerignore` file is used to exclude all files and folders that are not required to run your application.
-
-<details>
-<summary>Click Here to view Example Dockerignore File</summary>
-<br>
-
-```bash
-# Virtual Environment
-.venv/
-
-# Jupyter Notebooks
-*.ipynb
-
-# Jupyter Notebook Checkpoints
-.ipynb_checkpoints/
-
-# Python Cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Environment File
-.env
-*.env
-
-# Dataset (Parquet & CSV Files)
-*.parquet
-*.csv
-
-# Python Package (utils)
-utils/
-
-# Local/Temporary Files
-*.log
-*.tmp
-*.bak
-
-# Version Control Files
-.git/
-.gitignore
-
-# IDE/Editor Configs
-.vscode/
-.idea/
-.DS_Store
-
-# Python Package Build Artifacts
-*.egg-info/
-build/
-dist/
-```
-</details>
 
 ### 5. Build the Docker Image
 - A Docker image is essentially a read-only template that contains everything needed to run an application.
@@ -827,7 +669,7 @@ The frontend application files are in the project root :
 
 You can open `index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server).
 
-Access the live Website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
+Access the live website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="frontend-ui" src="https://github.com/user-attachments/assets/a1957a47-d428-44aa-a790-e5abf02cd982"></a>
 
@@ -1271,12 +1113,13 @@ AutoIQ/
 ├── .dockerignore             # All files and folders ignored by Docker while building Docker Image
 ├── .gitignore                # All files and folders ignored by Git while pushing code to GitHub
 ├── Dockerfile                # Instructions for building the Docker Image
-├── index.html                # Frontend HTML File
-├── style.css                 # Frontend CSS File
-├── script.js                 # Frontend JS File
-├── requirements.txt          # List of required libraries for the Project
 ├── LICENSE                   # License specifying permissions and usage rights
-└── README.md                 # Detailed documentation of the Project
+├── README.md                 # Detailed documentation of the Project
+├── index.html                # Frontend HTML File
+├── requirements.txt          # List of required libraries for the Project
+├── script.js                 # Frontend JS File
+└── style.css                 # Frontend CSS File
+
 ```
 
 <hr>
@@ -1287,7 +1130,6 @@ This project is licensed under the [MIT License](LICENSE). You are free to use a
 
 <div align='left'>
   
-**[`^        Scroll to Top       ^`](#autoiq--used-car-pricing-system)**
+**[`^        Scroll to Top       ^`](#top)**
 
 </div>
-
