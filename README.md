@@ -385,7 +385,7 @@ ALLOWED_ORIGINS=list_of_URLs_that_are_allowed_to_access_the_API
 ### 4. Run the Docker Container
 Start the application using Docker. This will run the FastAPI server and handle all the dependencies automatically.
 ```bash
-docker run --env-file .env -p 8000:8000 your_image_name /
+docker run --env-file .env -p 8000:8000 your_image_name \
    uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
@@ -542,7 +542,7 @@ docker build -t your_image_name .
 
 #### For Development
 ```bash
-docker run --env-file .env -p 8000:8000 your_image_name /
+docker run --env-file .env -p 8000:8000 your_image_name \
     uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
@@ -877,7 +877,7 @@ pipe = Pipeline(steps=[
 # Average Error and R2-Score through Cross-Validation
 cv_results = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=k, scoring={'mae':'neg_mean_absolute_error','r2':'r2'}, n_jobs=-1)
 print(f"Average Error : {-cv_results['test_mae'].mean():.2f}")
-print(f"Standard Deviatacion of Error : {cv_results['test_mae'].std():.2f}")
+print(f"Standard Deviation of Error : {cv_results['test_mae'].std():.2f}")
 print(f"Average R2-Score : {cv_results['test_r2'].mean():.2f}")
 print(f"Standard Deviation of R2-Score : {cv_results['test_r2'].std():.2f}")
 ```
@@ -889,7 +889,7 @@ print(f"Standard Deviation of R2-Score : {cv_results['test_r2'].std():.2f}")
 
 ```
 Average Error : 87885.34
-Standard Deviatacion of Error : 1279.54
+Standard Deviation of Error : 1279.54
 Average R2-Score : 0.87
 Standard Deviation of R2-Score : 0.01
 ```
