@@ -55,7 +55,7 @@
 
 ## Impact
 - Cut MAE by 29% (₹123,190 → ₹87,885) and improved R² from 0.77 to 0.87 over a linear-regression baseline.
-- Reduced fold-to-fold error variability by ~80% (CV MAE std 6,445 → 1,280) for more stable, reliable predictions.
+- Reduced fold-to-fold error variability by \~80% (CV MAE std 6,445 → 1,280) for more stable, reliable predictions.
 - Delivers data-driven price estimates that help sellers avoid underpricing and buyers identify fairly priced listings.
 
 <hr>
