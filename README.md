@@ -33,20 +33,17 @@
 <hr>
 
 ## Problem Statement
-- In the used car market, buyers and sellers often struggle to determine a fair price for their vehicles.
-- Incorrect pricing can result in lost revenue if undervalued or delayed sales if overpriced.
-- The goal is to provide accurate and transparent pricing for used cars by analyzing real-world market listings.
+- In the used-car market, buyers and sellers often struggle to determine a fair price for a vehicle.
+- Incorrect pricing leads to revenue loss when undervalued and slow sales when overpriced.
+- The goal is to provide accurate and transparent pricing by analyzing real-world market listings.
 
 <hr>
 
 ## Overview
-- Built and deployed an end-to-end machine learning pipeline to predict used car prices using real-world data.
-- Collected and cleaned 2,800+ used car listings from CARS24 using Selenium and BeautifulSoup.
-- Optimized dataset memory usage by 90% through downcasting data types and converting to Parquet format.
-- Trained regression models using Scikit-learn pipelines to prevent data leakage and ensure reliable evaluation.
-- Deployed the trained machine learning model as a REST API using FastAPI on Render.
-- Built an HTML/CSS/JS frontend hosted on GitHub Pages to interact with the REST API and display predictions.
-- Containerized the entire application using Docker and pushed it to Docker Hub for reproducibility.
+- Built and deployed an end-to-end machine learning pipeline to predict used-car prices from real market data.
+- Collected and processed 2,800+ listings from Cars24 using Selenium and BeautifulSoup.
+- Trained a tuned stacking ensemble of XGB, RF, GB models with Scikit-learn pipelines to prevent data leakage.
+- Exposed the model through a Dockerized FastAPI service with a live frontend for real-time price predictions.
 
 <hr>
 
@@ -57,11 +54,9 @@
 <hr>
 
 ## Impact
-- Achieved a 30% lower MAE and a 12% higher R<sup>2</sup> score compared to the baseline regression model.
-- Reduced prediction error variance by 70%, ensuring more stable and reliable predictions.
-- Helps sellers price vehicles closer to true market value, reducing revenue loss from underpricing.
-- Helps buyers make confident purchase decisions by identifying fairly priced listings.
-- Increases revenue by aligning vehicle prices with market value, reducing underpricing and overpricing risks.
+- Cut MAE by 29% (₹123,190 → ₹87,885) and improved R² from 0.77 to 0.87 over a linear-regression baseline.
+- Reduced fold-to-fold error variability by ~80% (CV MAE std 6,445 → 1,280) for more stable, reliable predictions.
+- Delivers data-driven price estimates that help sellers avoid underpricing and buyers identify fairly priced listings.
 
 <hr>
 
