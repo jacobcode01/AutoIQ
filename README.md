@@ -990,6 +990,35 @@ best_model = rcv.best_estimator_
 
 <hr>
 
+### 9. Final Model Evaluation on Unseen Data
+
+<details>
+<summary>Click Here to view Code Snippet</summary>
+<br>
+
+```python
+# Model Prediction on Unseen Data
+y_pred_test = best_model.predict(X_test)
+
+# Mean Absolute Error and R2-Score on Unseen Data
+from sklearn.metrics import mean_absolute_error, r2_score
+print(f'Mean Absolute Error on Unseen Data : {mean_absolute_error(y_test, y_pred_test):.2f}')
+print(f'R2-Score on Unseen Data : {r2_score(y_test, y_pred_test):.2f}')
+```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
+```
+Mean Absolute Error on Unseen Data : 88637.86
+R2-Score on Unseen Data : 0.87
+```
+</details>
+
+<hr>
+
 ## Challenges & Solutions
 
 ### Challenge 1 : Getting Real-World Data
