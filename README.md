@@ -360,7 +360,7 @@ This project uses a `.env` file to store configuration settings like model paths
 
 #### `.env` file
 - Stores environment variables in plain text.
-```python
+```bash
 # .env
 ENV=environment_name
 MAE=mean_absolute_error
@@ -399,10 +399,6 @@ docker run --env-file .env -p 8000:8000 your_image_name \
 ### 5. Access the FastAPI Server
 Once the container is running, open your browser and navigate to :
 ```bash
-http://localhost:8000/docs
-
-or
-
 http://127.0.0.1:8000/docs
 ```
 This opens the Swagger UI for testing the API endpoints.
@@ -554,10 +550,6 @@ docker run --env-file .env -p 8000:8000 your_image_name
 After the container starts, you can access your API.
 
 ```bash
-http://localhost:8000
-
-or
-
 http://127.0.0.1:8000
 ```
 
