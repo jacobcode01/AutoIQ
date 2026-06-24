@@ -55,8 +55,8 @@
 
 ## Impact
 - Cut MAE by 30% (₹123,190 → ₹85,566) and improved R² from 0.77 to 0.88 over a linear-regression baseline.
+- Reduced MAE variability by ~80% (std 6,445 → 1,280) through stacking, producing more consistent predictions.
 - Validated on a held-out test set, achieving MAE of ₹88,638 and R² of 0.87 on unseen data.
-- Reduced MAE variability by ~70% (std 6,445 → 1,280) through stacking, producing more consistent predictions across folds.
 - Delivers data-driven price estimates that help sellers avoid underpricing and buyers identify fairly priced listings.
 
 <hr>
@@ -849,6 +849,12 @@ Standard Deviation of R2-Score : 0.02
 <br>
 
 ```python
+# Creating Object of the Models
+rf = RandomForestRegressor(random_state=42, n_jobs=-1)
+gb = GradientBoostingRegressor(random_state=42)
+xgb = XGBRegressor(random_state=42, n_jobs=-1)
+meta_model = ElasticNet(max_iter=10000, random_state=42)
+
 # Assigning Base Model for StackingRegressor
 base_model = [('rf', rf),('xgb', xgb),('gb', gb)]
 
