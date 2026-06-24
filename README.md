@@ -54,8 +54,9 @@
 <hr>
 
 ## Impact
-- Cut MAE by 29% (₹123,190 → ₹87,885) and improved R² from 0.77 to 0.87 over a linear-regression baseline.
-- Reduced fold-to-fold error variability by \~80% (CV MAE std 6,445 → 1,280) for more stable, reliable predictions.
+- Cut MAE by 30% (₹123,190 → ₹85,566) and improved R² from 0.77 to 0.88 over a linear-regression baseline.
+- Validated on a held-out test set, achieving MAE of ₹88,638 and R² of 0.87 on unseen data.
+- Reduced MAE variability by ~70% (std 6,445 → 1,280) through stacking, producing more consistent predictions across folds.
 - Delivers data-driven price estimates that help sellers avoid underpricing and buyers identify fairly priced listings.
 
 <hr>
@@ -956,6 +957,18 @@ best_model = rcv.best_estimator_
 ```
 </details>
 
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
+```
+Average Error : 85565.77
+Standard Deviation of Error : 1896.31
+Average R2-Score : 0.88
+Standard Deviation of R2-Score : 0.01
+```
+</details>
+
 <hr>
 
 ### 8. Performance Evaluation Comparison
@@ -1098,14 +1111,14 @@ R2-Score on Unseen Data : 0.87
 
 ```
 AutoIQ/
-|
+│
 ├── api/                      # FastAPI Code to deploy API on Render
 │   ├── main.py              
 │   └── config.py            
 │
 ├── clean_data/               # Cleaned Dataset (Parquet Format)
 │   └── clean_data.parquet
-|   └── ...
+│   └── ...
 │
 ├── images/                   # Images for Frontend Interface
 │   ├── favicon.png
@@ -1117,7 +1130,7 @@ AutoIQ/
 │
 ├── notebooks/                # Jupyter Notebooks for Project Development
 │   └── data_cleaning.ipynb
-|   └── ...
+│   └── ...
 │
 ├── scrape_code/              # Web Scraping Notebook
 │   └── scrape_code.ipynb
@@ -1129,7 +1142,7 @@ AutoIQ/
 │   ├── __init__.py
 │   ├── web_scraping.py
 │   └── helpers.py
-|   └── ...
+│   └── ...
 │
 ├── .dockerignore             # All files and folders ignored by Docker while building Docker Image
 ├── .gitignore                # All files and folders ignored by Git while pushing code to GitHub
