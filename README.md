@@ -231,7 +231,7 @@
 #### 2. Send an HTTP Request
 - Uses the `requests` library to retrieve each page's HTML content.
 - Adds a User-Agent header to simulate a real browser and reduce blocking risk.
-- Applies a random timeout (4-8 seconds) between requests to avoid overloading the server.
+- Applies a random delay of (4-8 seconds) between requests to avoid overloading the server.
 
 #### 3. Parse the HTML Content
 - Converts the response into a BeautifulSoup object using the `lxml` parser for fast, reliable parsing.
@@ -523,7 +523,6 @@ Follow these steps carefully to containerize your project with Docker :
 ### 4. Create the `.dockerignore` File
 - This file tells Docker which files and folders to exclude from the image.
 - This keeps the image small and prevents unnecessary files from being copied.
-- A `.dockerignore` file is used to exclude all files and folders that are not required to run your application.
 
 ### 5. Build the Docker Image
 - A Docker image is essentially a read-only template that contains everything needed to run an application.
