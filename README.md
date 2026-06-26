@@ -951,7 +951,7 @@ param_dist = {
     'model__final_estimator__l1_ratio': [0.0, 1.0]
 }
 
- RandomizedSearchCV Object with Cross-Validation
+# RandomizedSearchCV Object with Cross-Validation
 rcv = RandomizedSearchCV(estimator=pipe, param_distributions=param_dist, cv=k, scoring='neg_mean_absolute_error', n_iter=30, n_jobs=-1, random_state=42)
 
 # Fitting the RandomizedSearchCV Object
