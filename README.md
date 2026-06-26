@@ -917,7 +917,7 @@ Standard Deviation of R2-Score : 0.01
 <summary>Click Here to view Analysis</summary>
 &nbsp;
 
-| R2-Score Curve | Error Curve |
+| R²-Score Curve | Error Curve |
 |---|---|
 | <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> |
 
@@ -996,7 +996,7 @@ Standard Deviation of R2-Score : 0.01
 <summary>Click Here to view Analysis</summary>
 &nbsp;
 
-| R2-Score Curve (Before Tuning) | R2-Score Curve (After Tuning) |
+| R²-Score Curve (Before Tuning) | R²-Score Curve (After Tuning) |
 |---|---|
 | <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/7fcbf45a-6b22-4be0-b175-ea4288920724"> |
 
