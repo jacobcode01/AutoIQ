@@ -54,9 +54,9 @@
 <hr>
 
 ## Impact
-- Cut MAE by 30% (₹123,190 → ₹85,566) and improved R² from 0.77 to 0.88 over a linear-regression baseline.
-- Reduced MAE variability by ~70% (std 6,445 → 1,896) through tuning, producing more consistent predictions.
-- Validated on a held-out test set, achieving MAE of ₹88,638 and R² of 0.87 on unseen data.
+- Cut MAE by 30% (₹123,193 → ₹85,309) and improved R² from 0.77 to 0.88 over a linear-regression baseline.
+- Reduced MAE variability by ~64% (std 6,435 → 2,321) through tuning, producing more consistent predictions.
+- Validated on a held-out test set, achieving MAE of ₹88,313 and R² of 0.88 on unseen data.
 - Delivers data-driven price estimates that support more informed buying and selling decisions.
 
 <hr>
@@ -794,48 +794,48 @@ for name, model in models.items():
 ```
 Model : LR
 ----------------------------------------
-Average Error : 123190.02
-Standard Deviation of Error : 6445.18
+Average Error : 123193.35
+Standard Deviation of Error : 6435.48
 Average R2-Score : 0.77
 Standard Deviation of R2-Score : 0.01
 
 Model : KNN
 ----------------------------------------
-Average Error : 115572.16
-Standard Deviation of Error : 3883.19
+Average Error : 115518.58
+Standard Deviation of Error : 3843.92
 Average R2-Score : 0.79
 Standard Deviation of R2-Score : 0.00
 
 Model : DT
 ----------------------------------------
-Average Error : 118466.64
-Standard Deviation of Error : 4490.62
+Average Error : 116187.61
+Standard Deviation of Error : 4254.52
 Average R2-Score : 0.76
 Standard Deviation of R2-Score : 0.03
 
 Model : RF
 ----------------------------------------
-Average Error : 90811.20
-Standard Deviation of Error : 2335.09
+Average Error : 90937.17
+Standard Deviation of Error : 2666.87
 Average R2-Score : 0.86
 Standard Deviation of R2-Score : 0.01
 
 Model : GB
 ----------------------------------------
-Average Error : 98056.52
-Standard Deviation of Error : 3001.29
+Average Error : 98200.66
+Standard Deviation of Error : 3416.36
 Average R2-Score : 0.85
 Standard Deviation of R2-Score : 0.01
 
 Model : XGB
 ----------------------------------------
-Average Error : 91595.94
-Standard Deviation of Error : 2640.02
+Average Error : 91845.00
+Standard Deviation of Error : 2955.45
 Average R2-Score : 0.86
 Standard Deviation of R2-Score : 0.02
 ```
 
-<img title="model-comparison" src="https://github.com/user-attachments/assets/79fc4a22-1d71-4c63-8eaf-b40c19c8e936">
+<img title="model-comparison" src="https://github.com/user-attachments/assets/8224d2dc-3196-4cee-8c12-1511ba3af435">
 
 </details>
 
@@ -886,8 +886,8 @@ print(f"Standard Deviation of R2-Score : {cv_results['test_r2'].std():.2f}")
 &nbsp;
 
 ```
-Average Error : 87885.34
-Standard Deviation of Error : 1279.54
+Average Error : 88265.66
+Standard Deviation of Error : 1838.92
 Average R2-Score : 0.87
 Standard Deviation of R2-Score : 0.01
 ```
@@ -906,7 +906,7 @@ Standard Deviation of R2-Score : 0.01
 <summary>Click Here to view Analysis</summary>
 &nbsp;
 
-| <img title="ap-plot" src="https://github.com/user-attachments/assets/a97fb07b-2442-424d-b0b1-fcb1f5a75390"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/c0949198-ef58-4c0d-a280-4470c455bb90"> |
+| <img title="ap-plot" src="https://github.com/user-attachments/assets/03fd094a-d39c-4215-9ffc-2acbbe9840ea"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/956df3db-18fc-408b-ae22-678deba1a07a"> |
 |---|---|
 
 </details>
@@ -919,7 +919,7 @@ Standard Deviation of R2-Score : 0.01
 
 | R2-Score Curve | Error Curve |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/56912d24-f2a6-4c3b-95ce-a0489fa1652a"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/4fb325ac-90f8-4420-839e-6fdc187bbbf8"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> |
 
 </details>
 
@@ -951,10 +951,10 @@ param_dist = {
     'model__final_estimator__l1_ratio': [0.0, 1.0]
 }
 
-# RandomizedSearch Object with Cross-Validation
+ RandomizedSearchCV Object with Cross-Validation
 rcv = RandomizedSearchCV(estimator=pipe, param_distributions=param_dist, cv=k, scoring='neg_mean_absolute_error', n_iter=30, n_jobs=-1, random_state=42)
 
-# Fitting the RandomizedSearch Object
+# Fitting the RandomizedSearchCV Object
 rcv.fit(X_train, y_train)
 
 # Best Estimator
@@ -967,8 +967,8 @@ best_model = rcv.best_estimator_
 &nbsp;
 
 ```
-Average Error : 85565.77
-Standard Deviation of Error : 1896.31
+Average Error : 85308.59
+Standard Deviation of Error : 2320.79
 Average R2-Score : 0.88
 Standard Deviation of R2-Score : 0.01
 ```
@@ -986,7 +986,7 @@ Standard Deviation of R2-Score : 0.01
 
 | Before Tuning | After Tuning |
 |---|---|
-| <img title="ap-plot" src="https://github.com/user-attachments/assets/3e2f14b3-3df8-42b0-b686-93fe5ef56a76"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/65f3d99b-e50c-4423-9531-f0d78274868d"> |
+| <img title="ap-plot" src="https://github.com/user-attachments/assets/03fd094a-d39c-4215-9ffc-2acbbe9840ea"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/78b51241-1b65-4ec6-96a8-7a0d03e1664d"> |
 
 </details>
 
@@ -998,11 +998,11 @@ Standard Deviation of R2-Score : 0.01
 
 | R2-Score Curve (Before Tuning) | R2-Score Curve (After Tuning) |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/df3db351-a715-4558-ba8b-0c146c1b5233"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/e3f814e9-aac1-4fa3-8813-9114d14fcf7f"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/7fcbf45a-6b22-4be0-b175-ea4288920724"> |
 
 | Error Curve (Before Tuning) | Error Curve (After Tuning) |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/b1489435-ae46-495a-831b-4f354ef9ec57"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/8afc7961-67cd-43ee-9541-4197871c7156"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/66e6989c-93a5-443c-b3db-d7a8e7fe51d9"> |
 
 </details>
 
@@ -1015,7 +1015,7 @@ Standard Deviation of R2-Score : 0.01
 <br>
 
 ```python
-# Model Prediction on Unseen Data
+# Model Performance on Unseen Data
 y_pred_test = best_model.predict(X_test)
 
 # Mean Absolute Error and R2-Score on Unseen Data
@@ -1030,8 +1030,8 @@ print(f'R2-Score on Unseen Data : {r2_score(y_test, y_pred_test):.2f}')
 &nbsp;
 
 ```
-Mean Absolute Error on Unseen Data : 88637.86
-R2-Score on Unseen Data : 0.87
+Mean Absolute Error on Unseen Data : 88313.38
+R2-Score on Unseen Data : 0.88
 ```
 </details>
 
