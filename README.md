@@ -324,13 +324,15 @@ df.head()
 
 The final dataset consists of 2,800+ unique car listings, with each record containing :
 
-- `model_name` : Model name of the car (2014 Hyundai Grand i10, etc).         
-- `fuel_type` : Type of fuel the car uses (Petrol, Diesel, CNG, Electric).        
-- `transmission` : Type of transmission the car has (Automatic or Manual).           
-- `owner` : Number of previous owners (1st owner, 2nd owner, 3rd owner, etc).
-- `engine_capacity` : Size of the engine (in cc).                              
-- `km_driven` : Total distance traveled by the car (in km).                   
-- `price` : Selling price of the car (target variable).
+| Column | Description |
+|:---|:---|
+| `model_name` | Model name of car (2014 Hyundai Grand i10, etc.) |
+| `fuel_type` | Fuel type (Petrol, Diesel, CNG, Electric) |
+| `transmission` | Transmission type (Automatic or Manual) |
+| `owner` | Previous owners count (1st owner, 2nd owner, 3rd owner, etc.) |
+| `engine_capacity` | Engine size (in cc) |
+| `km_driven` | Total distance traveled (in km) |
+| `price` | Selling price (target variable) |
 
 </details>
 
