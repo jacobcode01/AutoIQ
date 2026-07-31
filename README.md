@@ -56,8 +56,8 @@
 ## Impact
 - Cut MAE by 31% (₹1,23,193 → ₹85,281) and improved R² from 0.77 to 0.88 over a Linear Regression baseline.
 - Reduced MAE variability by 62% (std ₹6,435 → ₹2,426) through tuning, producing more consistent predictions.
-- Validated on a held-out test set, achieving MAE of ₹87,723 and R² of 0.87 on completely unseen data.
-- Delivers data-driven price estimates that support more informed buying and selling decisions.
+- Validated on a held-out test set : ₹87,723 MAE, R² 0.87, ~14% MAPE on completely unseen data.
+- Delivers a price **range**, not just a point estimate, so buyers/sellers see the model's uncertainty honestly instead of a falsely precise single number.
 
 <hr>
 
@@ -387,16 +387,21 @@ ALLOWED_ORIGINS=<comma_separated_list_of_allowed_origins>
 ### 4. Run the Docker Container
 Start the application using Docker. This will run the FastAPI server and handle all the dependencies automatically.
 ```bash
-docker run --env-file .env -p 8000:8000 your_image_name \
-   uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+docker run --env-file .env -p 8000:8000 your_image_name
 ```
 
 > [!NOTE]
 > `api.main` : Refers to the main.py file inside the api folder.
 > 
 > `app` : The FastAPI instance defined in your code.
-> 
-> `--reload` : Automatically reloads when code changes (development only).
+>
+> Code is baked into the image, so `--reload` won't pick up changes here.
+
+#### Alternative : Run Without Docker
+If you'd rather run the API directly (e.g. for local development with live-reload), create a virtual environment, install `requirements.txt`, and run :
+```bash
+uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+```
 
 ### 5. Access the FastAPI Server
 Once the container is running, open your browser and navigate to :
@@ -493,7 +498,7 @@ http://127.0.0.1:8000/predict
 - **Response Body (JSON) :** This confirms that the API is running and returns the result of your API call.
 ```json
 {
-  "output": "₹9,69,000 to ₹11,50,000"
+  "output": "₹7,81,000 to ₹12,70,000"
 }
 ```
 
@@ -537,16 +542,13 @@ docker build -t your_image_name .
 - When you run a Docker image, it becomes a Docker container.
 - It is a live instance of that image, running your application in an isolated environment.
 
-#### For Development
-```bash
-docker run --env-file .env -p 8000:8000 your_image_name \
-    uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-#### For Production
 ```bash
 docker run --env-file .env -p 8000:8000 your_image_name
 ```
+
+> [!NOTE]
+> The container always runs the image's code, `--reload` won't do anything here since there's no source folder mounted in.
+> For a live-reloading dev workflow, run `uvicorn api.main:app --reload --host 127.0.0.1 --port 8000` directly on your machine instead (see [Setup](#setup)).
 
 After the container starts, you can access your API.
 
@@ -624,17 +626,17 @@ docker stop container_id
 
 ## Application
 
-The frontend application files are in the project root :
+The frontend application files are in the `frontend/` folder :
 - `index.html` : This file defines the structure and layout of the web page.
 - `style.css` : This file handles the visual appearance of the web page.
 - `script.js` : This file communicates between the web page and the REST API.
 
 > [!IMPORTANT]
-> Remember to update the API URL in `script.js` when deploying on GitHub Pages to get real-time predictions.  
+> If you clone this repo and want `script.js` to hit your own API instead of the live one, update the fetch URL.  
 >
 > Change from :  
 > ```js
-> const fetchPromise = fetch("http://127.0.0.1:8000/predict", {
+> const fetchPromise = fetch("https://autoiq.onrender.com/predict", {
 >      method: "POST",
 >      headers: { "Content-Type": "application/json" },
 >      body: JSON.stringify(data),
@@ -643,7 +645,7 @@ The frontend application files are in the project root :
 >   
 > To :  
 > ```js
-> const fetchPromise = fetch("https://your_api_name.onrender.com/predict", {
+> const fetchPromise = fetch("http://127.0.0.1:8000/predict", {
 >     method: "POST",
 >     headers: { "Content-Type": "application/json" },
 >     body: JSON.stringify(data),
@@ -660,7 +662,7 @@ The frontend application files are in the project root :
 > 
 > If the API was inactive, the first prediction may take a few seconds while the server spins back up.
 
-You can open `index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server).
+You can open `frontend/index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server), for example : `python -m http.server 5500` from inside the `frontend/` folder.
 
 Access the live website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
@@ -1147,6 +1149,17 @@ upper_pipe.fit(X_train, y_train)
 - It eliminates dependency mismatches and OS-specific issues.
 - Same Docker image can be used to deploy on Render, Docker Hub or run locally with a single docker command.
 
+### Challenge 7 : Communicating Prediction Uncertainty
+
+#### Problem
+- A single point prediction doesn't tell a buyer/seller how confident the model actually is.
+- The initial `prediction ± MAE` range broke down in practice : it went negative for cheap cars, was unrealistically tight for expensive ones, and needed the exact training-time MAE hardcoded in `.env`, something a fresh clone wouldn't have.
+
+#### Solution
+- I replaced it with two `GradientBoostingRegressor` models trained directly on the 10th and 90th percentile of price (quantile loss), reusing the same preprocessing pipeline.
+- The range now scales naturally with the predicted price and can't go negative for realistic inputs, with an additional clip at 0 as a safety net.
+- Both models ship as `lower_pipe.pkl`/`upper_pipe.pkl` alongside the main model, so the range updates automatically whenever the model is retrained, no manual `.env` value to keep in sync.
+
 <hr>
 
 ## Folder Structure
@@ -1154,47 +1167,52 @@ upper_pipe.fit(X_train, y_train)
 ```
 AutoIQ/
 │
-├── api/                      # FastAPI Code to deploy API on Render
-│   ├── main.py              
-│   └── config.py            
+├── api/                       # FastAPI Code to deploy API on Render
+│   ├── main.py                # App instance, middleware, and endpoints
+│   ├── models.py               # Lifespan : loads pipe/model_freq/lower_pipe/upper_pipe
+│   ├── schemas.py               # Pydantic request & response models
+│   └── config.py                # Loads and validates environment variables
 │
-├── clean_data/               # Cleaned Dataset (Parquet Format)
+├── clean_data/                # Cleaned Dataset (Parquet Format)
 │   └── clean_data.parquet
 │   └── ...
 │
-├── images/                   # Images for Frontend Interface
-│   ├── favicon.png
-│   └── hero_image.png
+├── frontend/                  # Frontend Application
+│   ├── fonts/                  # Self-hosted Satoshi font (woff2)
+│   ├── images/                  # favicon.png, hero_image.png
+│   ├── index.html                # Frontend HTML File
+│   ├── script.js                  # Frontend JS File
+│   └── style.css                   # Frontend CSS File
 │
-├── models/                   # Serialized Components for Prediction
-│   ├── pipe.pkl
-│   └── model_freq.pkl
+├── models/                    # Serialized Components for Prediction
+│   ├── pipe.pkl                # Tuned XGBRegressor pipeline (point estimate)
+│   ├── model_freq.pkl           # Frequency-encoding dictionary for "model" column
+│   ├── lower_pipe.pkl            # Quantile pipeline, 10th percentile (price range lower bound)
+│   └── upper_pipe.pkl             # Quantile pipeline, 90th percentile (price range upper bound)
 │
-├── notebooks/                # Jupyter Notebooks for Project Development
-│   └── data_cleaning.ipynb
+├── notebooks/                 # Jupyter Notebooks for Project Development
+│   └── step_4_model_building.ipynb
 │   └── ...
 │
-├── scrape_code/              # Web Scraping Notebook
+├── scrape_code/                # Web Scraping Notebook
 │   └── scrape_code.ipynb
 │
-├── scrape_data/              # Scraped Dataset (CSV Format)
+├── scrape_data/                # Scraped Dataset (CSV Format)
 │   └── scrape_data.csv
 │
-├── utils/                    # Reusable Python Functions (utils Package)
+├── utils/                      # Reusable Python Functions (utils Package)
 │   ├── __init__.py
 │   ├── web_scraping.py
-│   └── helpers.py
+│   ├── helpers.py
 │   └── ...
 │
-├── .dockerignore             # All files and folders ignored by Docker while building Docker Image
-├── .gitignore                # All files and folders ignored by Git while pushing code to GitHub
-├── Dockerfile                # Instructions for building the Docker Image
-├── LICENSE                   # License specifying permissions and usage rights
-├── README.md                 # Detailed documentation of the Project
-├── index.html                # Frontend HTML File
-├── requirements.txt          # List of required libraries for the Project
-├── script.js                 # Frontend JS File
-└── style.css                 # Frontend CSS File
+├── .dockerignore              # All files and folders ignored by Docker while building Docker Image
+├── .env.example                # Template for required environment variables
+├── .gitignore                   # All files and folders ignored by Git while pushing code to GitHub
+├── Dockerfile                    # Instructions for building the Docker Image
+├── LICENSE                        # License specifying permissions and usage rights
+├── README.md                      # Detailed documentation of the Project
+└── requirements.txt                # List of required libraries for the Project
 ```
 
 <hr>
@@ -1208,4 +1226,3 @@ This project is licensed under the [MIT License](LICENSE). You are free to use a
 **[`^        Scroll to Top       ^`](#top)**
 
 </div>
-
