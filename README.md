@@ -411,6 +411,8 @@ Once the container is running, open your browser and navigate to :
 http://127.0.0.1:8000/docs
 ```
 
+This opens the Swagger UI for testing the API endpoints.
+
 > [!NOTE]
 > 
 > If running the API locally :
@@ -421,8 +423,6 @@ http://127.0.0.1:8000/docs
 > Use the same host (`127.0.0.1`/`localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`.
 > 
 > A mismatch makes browsers treat them as different origins and CORS will fail.
-
-This opens the Swagger UI for testing the API endpoints.
 
 Access the live API [here](https://autoiq.onrender.com/docs) or Click on the Image below.
 
