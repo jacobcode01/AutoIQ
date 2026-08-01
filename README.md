@@ -413,7 +413,7 @@ http://127.0.0.1:8000/docs
 
 This opens the Swagger UI for testing the API endpoints.
 
-> [!NOTE]
+> [!IMPORTANT]
 > 
 > If running the API locally :
 > 
