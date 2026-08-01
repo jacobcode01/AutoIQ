@@ -60,10 +60,10 @@
 <hr>
 
 ## Impact
-- Reduced prediction error by 31% over a LinearRegression baseline by tuning an XGBoost pipeline, cutting MAE from ₹1,23,193 to ₹85,281 and raising R² from 0.77 to 0.88.
+- Reduced prediction error by 31% over a LinearRegression baseline, tuning an XGBoost pipeline that cut MAE from ₹1,23,193 to ₹85,281 and raised R² from 0.77 to 0.88.
 - Improved prediction consistency by 62% through hyperparameter tuning, lowering MAE variability from ₹6,435 to ₹2,426 across all car segments.
-- Validated real-world generalization on unseen data (₹87,723 MAE, 0.87 R², ~14% MAPE), confirming the model generalizes instead of overfitting to training data.
-- Replaced single-number predictions with price ranges via quantile regression, giving buyers and sellers honest uncertainty for negotiation.
+- Validated the model on unseen real-world data, achieving ₹87,723 MAE, 0.87 R², and \~14% MAPE, confirming it generalizes well instead of overfitting to training data.
+- Replaced single-number predictions with price ranges using quantile regression, giving buyers and sellers honest uncertainty bounds to negotiate with.
 
 <hr>
 
@@ -943,8 +943,8 @@ Error Stability (CV of MAE) : 2.11%
 ```
 
 - The graph shows model performance by average error (lower is better) and average R<sup>2</sup> (higher is better).
-- RandomForestRegressor and XGBRegressor are the top performers (~₹90,900 MAE & R<sup>2</sup> 0.86).
-- A StackingRegressor was also tried, improving MAE by only ~3% (₹87,884 vs ₹90,900) for 3x the model complexity and inference time.
+- RandomForestRegressor and XGBRegressor are the top performers (\~₹90,900 MAE & R<sup>2</sup> 0.86).
+- A StackingRegressor was also tried, improving MAE by only \~3% (₹87,884 vs ₹90,900) for 3x the model complexity and inference time.
 ```md
   [StackingRegressor]
    RF     XGB     GB
@@ -1102,7 +1102,7 @@ Mean Absolute Percentage Error on Unseen Data : 13.93%
 
 - MAE and R<sup>2</sup> are useful for comparing models during development, but they don't mean much to a buyer/seller on their own.
 - MAPE translates error into a percentage of the car's own price, so it scales fairly across a ₹1.48L car and a ₹22L car, where a flat ₹87,723 MAE means very different things.
-- ~14% MAPE is the number to quote as the business-facing accuracy metric : "expect the estimate to be off by about 14% on average."
+- \~14% MAPE is the number to quote as the business-facing accuracy metric : "expect the estimate to be off by about 14% on average."
 
 </details>
 
