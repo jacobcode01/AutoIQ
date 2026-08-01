@@ -40,10 +40,10 @@
 <hr>
 
 ## Overview
-- Built and deployed an end-to-end machine learning pipeline to predict used-car prices from real market data.
-- Collected and processed 2,800+ listings from Cars24 using Selenium and BeautifulSoup.
-- Benchmarked 6 models and a stacking ensemble, then chose tuned XGBoost model with leakage-free pipelines.
-- Exposed via Dockerized FastAPI service with live frontend, delivering price range instead of point estimate.
+- Built and deployed an ML pipeline predicting used-car prices from 2,800+ real Cars24 listings.
+- Benchmarked 6 models and a stacking ensemble, then chose a tuned XGBoost model with leakage-free pipelines.
+- Delivers a price range via quantile regression instead of a single point estimate, for honest uncertainty.
+- Served through a Dockerized FastAPI service with a live frontend for real-time predictions.
 
 <hr>
 
