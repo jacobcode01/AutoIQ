@@ -371,26 +371,18 @@ This project uses a `.env` file to store configuration settings like model paths
 - Stores environment variables in plain text.
 ```bash
 # .env
-ENV=<dev_or_prod>
-MODEL_FREQ_PATH=<path/to/model_freq.pkl>
-PIPE_PATH=<path/to/pipe.pkl>
-LOWER_PIPE_PATH=<path/to/lower_pipe.pkl>
-UPPER_PIPE_PATH=<path/to/upper_pipe.pkl>
-ALLOWED_ORIGINS=<comma_separated_list_of_allowed_origins>
+ENV=dev_or_prod
+MODEL_FREQ_PATH=path/to/model_freq.pkl
+PIPE_PATH=path/to/pipe.pkl
+LOWER_PIPE_PATH=path/to/lower_pipe.pkl
+UPPER_PIPE_PATH=path/to/upper_pipe.pkl
+ALLOWED_ORIGINS=comma_separated_list_of_allowed_origins
 ```
 
 > [!IMPORTANT]
 > Never commit `.env` to GitHub / Docker.
 > 
 > Add `.env` to `.gitignore` and `.dockerignore` to keep it private.
-
-#### `config.py` file
-- Load and validate environment variables from `.env`.
-- Uses Pydantic `BaseSettings` to read environment variables, validate types and provide easy access.
-
-#### `main.py` file
-- Uses `settings` from `config.py` in FastAPI.
-- Imports the `settings` object to provide API's metadata dynamically from `.env`.
 
 ### 4. Run the Docker Container
 Start the application using Docker. This will run the FastAPI server and handle all the dependencies automatically.
