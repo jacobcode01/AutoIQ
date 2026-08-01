@@ -332,13 +332,13 @@ The final dataset consists of 2,800+ unique car listings, with each record conta
 
 | Column | Description |
 |:---|:---|
-| `model_name` | Model name of car (2014 Hyundai Grand i10, etc.) |
-| `fuel_type` | Fuel type (Petrol, Diesel, CNG, Electric) |
-| `transmission` | Transmission type (Automatic or Manual) |
-| `owner` | Previous owners count (1st owner, 2nd owner, 3rd owner, etc.) |
-| `engine_capacity` | Engine size (in cc) |
-| `km_driven` | Total distance traveled (in km) |
-| `price` | Selling price (target variable) |
+| model_name | Model name of car (2014 Hyundai Grand i10, etc.) |
+| fuel_type | Fuel type (Petrol, Diesel, CNG, Electric) |
+| transmission | Transmission type (Automatic or Manual) |
+| owner | Previous owners count (1st owner, 2nd owner, 3rd owner, etc.) |
+| engine_capacity | Engine size (in cc) |
+| km_driven | Total distance traveled (in km) |
+| price | Selling price (target variable) |
 
 </details>
 
@@ -394,8 +394,6 @@ docker run --env-file .env -p 8000:8000 --name your_container_name your_image_na
 > `api.main` : Refers to the main.py file inside the api folder.
 > 
 > `app` : The FastAPI instance defined in your code.
->
-> Code is baked into the image, so `--reload` won't pick up changes here.
 
 ### 5. Access the FastAPI Server
 Once the container is running, open your browser and navigate to :
