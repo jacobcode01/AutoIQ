@@ -41,7 +41,7 @@
 
 ## Solution
 - Built and deployed an ML pipeline predicting used-car prices from 2,800+ real Cars24 listings.
-- Benchmarked 6 models and a stacking ensemble, then selected a tuned XGBoost model using leakage-free pipelines.
+- Benchmarked 6 models and a stacking ensemble, then selected a tuned XGBoost with leakage-free pipelines.
 - Delivered price ranges via quantile regression instead of point estimates, giving users honest uncertainty.
 - Deployed the model through a Dockerized FastAPI service with a live frontend for real-time predictions.
 
@@ -405,17 +405,18 @@ docker run --env-file .env -p 8000:8000 --name your_container_name your_image_na
 >
 > Code is baked into the image, so `--reload` won't pick up changes here.
 
-#### Alternative : Run Without Docker
-If you'd rather run the API directly (e.g. for local development with live-reload), create a virtual environment, install `requirements.txt`, and run :
-```bash
-uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
-```
-
 ### 5. Access the FastAPI Server
 Once the container is running, open your browser and navigate to :
 ```bash
 http://127.0.0.1:8000/docs
 ```
+
+> [!NOTE]
+>
+> If you're running the API locally, use the same host (`127.0.0.1` or `localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`
+>
+> Else browsers treat them as different origins, so a mismatch will fail CORS.
+
 This opens the Swagger UI for testing the API endpoints.
 
 Access the live API [here](https://autoiq.onrender.com/docs) or Click on the Image below.
@@ -670,7 +671,7 @@ The frontend application files are in the `frontend/` folder :
 > 
 > If the API was inactive, the first prediction may take a few seconds while the server spins back up.
 
-You can open `frontend/index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server), for example : `python -m http.server 5500` from inside the `frontend/` folder.
+You can open `frontend/index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server).
 
 Access the live website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
