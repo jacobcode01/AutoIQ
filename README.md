@@ -51,7 +51,7 @@
 
 <details>
 <summary>Click Here to view Workflow Diagram</summary>
-&nbsp;
+<br>
 
 <img title="Workflow Diagram" src="https://github.com/user-attachments/assets/203c82e4-69bf-4cff-ad9a-92ee6f943882">
 
@@ -76,7 +76,7 @@
 
 <details>
 <summary>Click Here to view more Details</summary>
-&nbsp;
+<br>
 
 **Input :** URL of a Cars24 listing page to scrape.
 
@@ -111,7 +111,7 @@
 
 <details>
 <summary>Click Here to view more Details</summary>
-&nbsp;
+<br>
 
 **Input :** BeautifulSoup object (`soup`) containing the fully-rendered HTML of a Cars24 listing page.
 
@@ -122,7 +122,7 @@
 
 <details>
 <summary>Click to view the HTML Element Snapshot</summary>
-&nbsp;
+<br>
 <img title="cars24" src="https://github.com/user-attachments/assets/66524e3d-4c26-4edc-8f8a-40b17016eda4">
 </details>
 
@@ -158,7 +158,7 @@
 
 <details>
 <summary>Click to view the HTML Element Snapshot</summary>
-&nbsp;
+<br>
 <img title="cars24" src="https://github.com/user-attachments/assets/5185f66b-3de6-4354-ae11-fcb0b8fbb793">
 </details>
 
@@ -193,7 +193,7 @@
 
 <details>
 <summary>Click to view the HTML Element Snapshot</summary>
-&nbsp;
+<br>
 <img title="cars24" src="https://github.com/user-attachments/assets/9a974eca-b39b-4e9a-bdc3-ff5abe6c9491">
 </details>
 
@@ -208,7 +208,7 @@
 
 <details>
 <summary>Click to view the HTML Element Snapshot</summary>
-&nbsp;
+<br>
 <img title="cars24" src="https://github.com/user-attachments/assets/fbac495f-6894-41dc-b469-2d23e90e3610">
 </details>
 
@@ -227,7 +227,7 @@
 
 <details>
 <summary>Click Here to view more Details</summary>
-&nbsp;
+<br>
 
 **Input :** List of URLs for individual car listings (`link` from the previous DataFrame).
 
@@ -248,7 +248,7 @@
 
 <details>
 <summary>Click to view the HTML Element Snapshot</summary>
-&nbsp;
+<br>
 <img title="cars24" src="https://github.com/user-attachments/assets/80a81a7e-ffd6-4413-ab74-650dbf63afc6">
 </details>
 
@@ -326,7 +326,7 @@ df.head()
 
 <details>
 <summary>Click Here to view more Details</summary>
-&nbsp;
+<br>
 
 The final dataset consists of 2,800+ unique car listings, with each record containing :
 
@@ -792,10 +792,7 @@ for name, model in models.items():
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
-
-- Standard deviation of R<sup>2</sup> barely moves across models (0.00-0.03, since R<sup>2</sup> is bounded [0,1]), so it doesn't say much on its own.
-- Replaced it with **Error Stability**, the coefficient of variation of MAE (`std / mean`), which shows how much the error itself swings fold-to-fold, relative to its own scale.
+<br>
 
 ```
 Model : LR
@@ -847,7 +844,70 @@ Error Stability (CV of MAE) : 2.11%
 
 <hr>
 
-### 5. Choosing a Single Model
+### 5. Evaluate StackingRegressor Model
+
+<details>
+<summary>Click Here to view Code Snippet</summary>
+<br>
+
+```python
+# Evaluating StackingRegressor (RF + XGB + GB -> ElasticNet meta-learner)
+from sklearn.ensemble import StackingRegressor
+from sklearn.linear_model import ElasticNet
+
+stack_estimators = [
+    ('rf', RandomForestRegressor(random_state=42, n_jobs=-1)),
+    ('xgb', XGBRegressor(random_state=42, n_jobs=-1)),
+    ('gb', GradientBoostingRegressor(random_state=42))
+]
+
+stack_model = StackingRegressor(
+    estimators=stack_estimators,
+    final_estimator=ElasticNet(random_state=42),
+    n_jobs=-1
+)
+
+stack_pipe = Pipeline(steps=[
+    ('preprocessor', ctf),
+    ('model', stack_model)
+])
+
+k = KFold(n_splits=5, shuffle=True, random_state=42)
+
+stack_cv_results = cross_validate(estimator=stack_pipe, X=X_train, y=y_train, cv=k, scoring={'mae':'neg_mean_absolute_error','r2':'r2'}, n_jobs=-1, return_train_score=False)
+
+stack_mae = -stack_cv_results['test_mae'].mean()
+stack_std = stack_cv_results['test_mae'].std()
+stack_r2 = stack_cv_results['test_r2'].mean()
+
+print(f'Model : StackingRegressor')
+print('-'*40)
+print(f'Average Error : {stack_mae:.2f}')
+print(f'Standard Deviation of Error : {stack_std:.2f}')
+print(f'Average R2-Score : {stack_r2:.2f}')
+print(f'Error Stability (CV of MAE) : {(stack_std / stack_mae) * 100:.2f}%')
+print('')
+```
+
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+<br>
+
+```
+Model : StackingRegressor
+----------------------------------------
+Average Error : 87884.49
+Standard Deviation of Error : 1488.70
+Average R2-Score : 0.87
+Error Stability (CV of MAE) : 1.69%
+```
+</details>
+
+<hr>
+
+### 6. Choosing a Single Model
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -859,12 +919,12 @@ xgb = XGBRegressor(random_state=42, n_jobs=-1)
 
 # Final Pipeline with XGBRegressor
 pipe = Pipeline(steps=[
-    ('preprocessor', ctf), 
-    ('model', xgb) 
+    ('preprocessor', ctf),
+    ('model', xgb)
 ])
 ```
 ```python
-# Average Error and R2-Score through Cross-Validation
+# Computing Metrics through Cross-Validation
 cv_results = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=k, scoring={'mae':'neg_mean_absolute_error','r2':'r2'}, n_jobs=-1)
 print(f"Average Error : {-cv_results['test_mae'].mean():.2f}")
 print(f"Standard Deviation of Error : {cv_results['test_mae'].std():.2f}")
@@ -875,7 +935,7 @@ print(f"Error Stability (CV of MAE) : {(cv_results['test_mae'].std() / -cv_resul
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```
 Average Error : 90899.92
@@ -884,9 +944,26 @@ Average R2-Score : 0.86
 Error Stability (CV of MAE) : 2.11%
 ```
 
-- A StackingRegressor (RF + XGB + GB, ElasticNet meta-model) was also tried, improving MAE by only ~6% (₹85,634 vs ₹90,900) for 3x the model complexity and inference time.
-- Not worth that trade-off for this project's scope, so **XGBRegressor** is used directly : it ties RF on error but has the lowest standard deviation of error across folds, and it's far simpler to tune, explain, and serve than a 3-model stack.
-
+- The graph shows model performance by average error (lower is better) and average R<sup>2</sup> (higher is better).
+- RandomForestRegressor and XGBRegressor are the top performers (~₹90,900 MAE & R<sup>2</sup> 0.86).
+- A StackingRegressor was also tried, improving MAE by only ~3% (₹87,884 vs ₹90,900) for 3x the model complexity and inference time.
+```md
+  [StackingRegressor]
+   RF     XGB     GB
+    \      |      /
+     \     |     /
+      \    |    /
+       ▼   ▼   ▼
+      ElasticNet
+    [meta-learner]
+          │
+          ▼
+    Final Prediction
+```
+- Not worth the trade-off for this project's scope, so **XGBRegressor** is used directly :
+    - It ties RF on error but has the lowest standard deviation of error (XGB's ₹1,913 vs RF's ₹2,667),
+    - It means more consistent predictions across folds.
+    - Being a single model, it's also simpler to tune, explain, and serve than a 3-model stack.
 </details>
 
 <hr>
@@ -897,7 +974,7 @@ Error Stability (CV of MAE) : 2.11%
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 | <img title="ap-plot" src="https://github.com/user-attachments/assets/03fd094a-d39c-4215-9ffc-2acbbe9840ea"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/956df3db-18fc-408b-ae22-678deba1a07a"> |
 |---|---|
@@ -908,7 +985,7 @@ Error Stability (CV of MAE) : 2.11%
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 | R²-Score Curve | Error Curve |
 |---|---|
@@ -948,7 +1025,7 @@ best_model = rcv.best_estimator_
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```
 Average Error : 85281.35
@@ -966,7 +1043,7 @@ Error Stability (CV of MAE) : 2.85%
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 | Before Tuning | After Tuning |
 |---|---|
@@ -978,7 +1055,7 @@ Error Stability (CV of MAE) : 2.85%
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 | R²-Score Curve (Before Tuning) | R²-Score Curve (After Tuning) |
 |---|---|
@@ -1017,7 +1094,7 @@ print(f'Mean Absolute Percentage Error on Unseen Data : {mape * 100:.2f}%')
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```
 Mean Absolute Error on Unseen Data : 87723.02
@@ -1060,7 +1137,7 @@ upper_pipe.fit(X_train, y_train)
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 - A single point prediction is not very useful on its own, a **range** is more practical for buyers/sellers.
 - The initial approach used a flat `prediction ± MAE` range, but this is flawed :
