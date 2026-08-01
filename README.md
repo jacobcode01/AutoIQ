@@ -504,7 +504,7 @@ http://127.0.0.1:8000/predict
 - **Response Body (JSON) :** This confirms that the API is running and returns the result of your API call.
 ```json
 {
-  "output": "₹7,81,000 to ₹12,70,000"
+  "output": "₹7,81,412 to ₹12,66,018"
 }
 ```
 
