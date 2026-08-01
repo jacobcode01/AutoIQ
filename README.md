@@ -60,9 +60,9 @@
 <hr>
 
 ## Impact
-- Reduced prediction error by 31% over a LinearRegression baseline, tuning an XGBoost pipeline that cut MAE from ₹1,23,193 to ₹85,281 and raised R² from 0.77 to 0.88.
+- Reduced prediction error by 31% over a LinearRegression baseline, tuning an XGBoost pipeline that cut MAE from ₹1,23,193 to ₹85,281 and raised R<sup>2</sup> from 0.77 to 0.88.
 - Improved prediction consistency by 62% through hyperparameter tuning, lowering MAE variability from ₹6,435 to ₹2,426 across all car segments.
-- Validated the model on real-world unseen data, achieving MAE of ₹87723, R² of 0.87, and MAPE of \~14%, confirming it generalizes well instead of overfitting to training data.
+- Validated the model on real-world unseen data, achieving MAE of ₹87,723, R<sup>2</sup> of 0.87, and MAPE of \~14%, confirming it generalizes well instead of overfitting to training data.
 - Replaced single-number predictions with price ranges using quantile regression, giving buyers and sellers honest uncertainty bounds to negotiate with.
 
 <hr>
@@ -985,7 +985,7 @@ Error Stability (CV of MAE) : 2.11%
 <summary>Click Here to view Analysis</summary>
 <br>
 
-| R²-Score Curve | Error Curve |
+| R<sup>2</sup>-Score Curve | Error Curve |
 |---|---|
 | <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> |
 
@@ -1055,7 +1055,7 @@ Error Stability (CV of MAE) : 2.85%
 <summary>Click Here to view Analysis</summary>
 <br>
 
-| R²-Score Curve (Before Tuning) | R²-Score Curve (After Tuning) |
+| R<sup>2</sup>-Score Curve (Before Tuning) | R<sup>2</sup>-Score Curve (After Tuning) |
 |---|---|
 | <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/7fcbf45a-6b22-4be0-b175-ea4288920724"> |
 
