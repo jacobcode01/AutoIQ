@@ -412,10 +412,9 @@ http://127.0.0.1:8000/docs
 ```
 
 > [!NOTE]
->
-> If you're running the API locally, use the same host (`127.0.0.1` or `localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`
->
-> Else browsers treat them as different origins, so a mismatch will fail CORS.
+> If running the API locally, use the same host (`127.0.0.1`/`localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`.
+> 
+> A mismatch makes browsers treat them as different origins and CORS will fail.
 
 This opens the Swagger UI for testing the API endpoints.
 
@@ -555,10 +554,6 @@ docker build -t your_image_name .
 docker run --env-file .env -p 8000:8000 your_image_name
 ```
 
-> [!NOTE]
-> The container always runs the image's code, `--reload` won't do anything here since there's no source folder mounted in.
-> For a live-reloading dev workflow, run `uvicorn api.main:app --reload --host 127.0.0.1 --port 8000` directly on your machine instead (see [Setup](#setup)).
-
 After the container starts, you can access your API.
 
 ```bash
@@ -584,7 +579,7 @@ docker login
 - Tagging prepares the image for upload to Docker Hub.
 
 ```bash
-docker tag your_image_name your-dockerhub-username/your_image_name:latest
+docker tag your_image_name your_dockerhub_username/your_image_name:latest
 ```
 
 #### Push the Image to Docker Hub
@@ -593,7 +588,7 @@ docker tag your_image_name your-dockerhub-username/your_image_name:latest
 - Anyone can now pull and run the image without building it locally.
 
 ```bash
-docker push your-dockerhub-username/your_image_name:latest
+docker push your_dockerhub_username/your_image_name:latest
 ```
 
 </details>
@@ -607,13 +602,13 @@ Access the Docker Hub [here](https://hub.docker.com/r/themrityunjaypathak/autoiq
 - This ensures that the application behaves the same way across all systems.
 
 ```bash
-docker pull your-dockerhub-username/your_image_name:latest
+docker pull your_dockerhub_username/your_image_name:latest
 ```
 
 - After pulling the Docker image, you can run it to create a Docker container from it.
 
 ```bash
-docker run --env-file .env -p 8000:8000 your-dockerhub-username/your_image_name:latest
+docker run --env-file .env -p 8000:8000 your_dockerhub_username/your_image_name:latest
 ```
 
 ### 9. Verify the Container is Running
@@ -641,7 +636,7 @@ The frontend application files are in the `frontend/` folder :
 - `script.js` : This file communicates between the web page and the REST API.
 
 > [!IMPORTANT]
-> If you clone this repo and want `script.js` to hit your own API instead of the live one, update the fetch URL.  
+> If you clone this repo and want `script.js` to hit your local API instead of the live one, update the fetch URL.  
 >
 > Change from :  
 > ```js
@@ -670,8 +665,6 @@ The frontend application files are in the `frontend/` folder :
 > Please start the API first by visiting the API URL. Then, navigate to the website to make predictions.
 > 
 > If the API was inactive, the first prediction may take a few seconds while the server spins back up.
-
-You can open `frontend/index.html` directly in your browser or serve it via a local HTTP server (like VS Code Live Server).
 
 Access the live website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
