@@ -1176,31 +1176,30 @@ upper_pipe.fit(X_train, y_train)
 ```
 AutoIQ/
 │
-├── api/                       # FastAPI Code to deploy API on Render
-│   ├── main.py                # App instance, middleware, and endpoints
-│   ├── models.py               # Lifespan : loads pipe/model_freq/lower_pipe/upper_pipe
-│   ├── schemas.py               # Pydantic request & response models
-│   └── config.py                # Loads and validates environment variables
+├── api/                        # FastAPI Code to deploy API on Render
+│   ├── main.py                 # App instance, middleware, and endpoints
+│   ├── models.py               # Lifespan loads pipe/model_freq/lower_pipe/upper_pipe
+│   ├── schemas.py              # Pydantic request & response models
+│   └── config.py               # Loads and validates environment variables
 │
-├── clean_data/                # Cleaned Dataset (Parquet Format)
+├── clean_data/                 # Cleaned Dataset (Parquet Format)
 │   └── clean_data.parquet
 │   └── ...
 │
-├── frontend/                  # Frontend Application
+├── frontend/                   # Frontend Application
 │   ├── fonts/                  # Self-hosted Satoshi font (woff2)
-│   ├── images/                  # favicon.png, hero_image.png
-│   ├── index.html                # Frontend HTML File
-│   ├── script.js                  # Frontend JS File
-│   └── style.css                   # Frontend CSS File
+│   ├── images/                 # Frontend Assets
+│   ├── index.html              # Frontend HTML File
+│   ├── script.js               # Frontend JS File
+│   └── style.css               # Frontend CSS File
 │
-├── models/                    # Serialized Components for Prediction
+├── models/                     # Serialized Components for Prediction
 │   ├── pipe.pkl                # Tuned XGBRegressor pipeline (point estimate)
-│   ├── model_freq.pkl           # Frequency-encoding dictionary for "model" column
-│   ├── lower_pipe.pkl            # Quantile pipeline, 10th percentile (price range lower bound)
-│   └── upper_pipe.pkl             # Quantile pipeline, 90th percentile (price range upper bound)
+│   ├── model_freq.pkl          # Frequency-encoding dictionary for "model" column
+│   ├── lower_pipe.pkl          # Quantile pipeline, 10th percentile (price range lower bound)
+│   └── upper_pipe.pkl          # Quantile pipeline, 90th percentile (price range upper bound)
 │
-├── notebooks/                 # Jupyter Notebooks for Project Development
-│   └── step_4_model_building.ipynb
+├── notebooks/                  # Jupyter Notebooks for Project Development
 │   └── ...
 │
 ├── scrape_code/                # Web Scraping Notebook
@@ -1212,16 +1211,16 @@ AutoIQ/
 ├── utils/                      # Reusable Python Functions (utils Package)
 │   ├── __init__.py
 │   ├── web_scraping.py
-│   ├── helpers.py
+│   ├── export_data.py
 │   └── ...
 │
-├── .dockerignore              # All files and folders ignored by Docker while building Docker Image
+├── .dockerignore               # All files and folders ignored by Docker while building Docker Image
 ├── .env.example                # Template for required environment variables
-├── .gitignore                   # All files and folders ignored by Git while pushing code to GitHub
-├── Dockerfile                    # Instructions for building the Docker Image
-├── LICENSE                        # License specifying permissions and usage rights
-├── README.md                      # Detailed documentation of the Project
-└── requirements.txt                # List of required libraries for the Project
+├── .gitignore                  # All files and folders ignored by Git while pushing code to GitHub
+├── Dockerfile                  # Instructions for building the Docker Image
+├── LICENSE                     # License specifying permissions and usage rights
+├── README.md                   # Detailed documentation of the Project
+└── requirements.txt            # List of required libraries for the Project
 ```
 
 <hr>
