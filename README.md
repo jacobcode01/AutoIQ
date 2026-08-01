@@ -41,9 +41,9 @@
 
 ## Overview
 - Built and deployed an ML pipeline predicting used-car prices from 2,800+ real Cars24 listings.
-- Benchmarked 6 models and a stacking ensemble, then chose a tuned XGBoost model with leakage-free pipelines.
-- Delivers a price range via quantile regression instead of a single point estimate, for honest uncertainty.
-- Served through a Dockerized FastAPI service with a live frontend for real-time predictions.
+- Benchmarked 6 models and a stacking ensemble, then selected a tuned XGBoost model using leakage-free pipelines.
+- Delivered price ranges via quantile regression instead of point estimates, giving users honest uncertainty.
+- Deployed the model through a Dockerized FastAPI service with a live frontend for real-time predictions.
 
 <hr>
 
@@ -60,10 +60,10 @@
 <hr>
 
 ## Impact
-- Cut MAE by 31% (₹1,23,193 → ₹85,281) and improved R² from 0.77 to 0.88 over a Linear Regression baseline.
-- Reduced MAE variability by 62% (std ₹6,435 → ₹2,426) through tuning, producing more consistent predictions.
-- Validated on a held-out test set : ₹87,723 MAE, R² 0.87, ~14% MAPE on completely unseen data.
-- Delivers a price **range**, not just a point estimate, so buyers/sellers see the model's uncertainty honestly instead of a falsely precise single number.
+- Reduced prediction error by 31% over a Linear Regression baseline by tuning an XGBoost pipeline, cutting MAE from ₹1,23,193 to ₹85,281 and raising R² from 0.77 to 0.88.
+- Improved prediction consistency by 62% through hyperparameter tuning, lowering MAE variability from ₹6,435 to ₹2,426 across all car segments.
+- Validated model generalization on unseen data, achieving ₹87,723 MAE, 0.87 R², and ~14% MAPE on a held-out test set.
+- Delivered price ranges instead of point estimates using quantile regression, giving buyers and sellers honest, actionable uncertainty for negotiation.
 
 <hr>
 
@@ -395,7 +395,7 @@ ALLOWED_ORIGINS=<comma_separated_list_of_allowed_origins>
 ### 4. Run the Docker Container
 Start the application using Docker. This will run the FastAPI server and handle all the dependencies automatically.
 ```bash
-docker run --env-file .env -p 8000:8000 your_image_name
+docker run --env-file .env -p 8000:8000 --name your_container_name your_image_name
 ```
 
 > [!NOTE]
@@ -425,7 +425,7 @@ Access the live API [here](https://autoiq.onrender.com/docs) or Click on the Ima
 ### 6. Stop the Docker Container
 When you're done using the application, stop the running container.
 ```bash
-docker stop your_image_name
+docker stop your_container_name
 ```
 
 <hr>
