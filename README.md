@@ -1119,7 +1119,18 @@ upper_pipe.fit(X_train, y_train)
 - I implemented Scikit-learn [Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) and [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html) to apply preprocessing only on training data.
 - This kept the test data completely unseen during preprocessing, preventing leakage.
 
-### Challenge 4 : Deploying the Model as an API
+### Challenge 4 : Communicating Prediction Uncertainty
+
+#### Problem
+- A single point prediction doesn't tell a buyer/seller how confident the model actually is.
+- Our initial `prediction ± MAE` range went negative for cheap cars and needed the training-time MAE in `.env`.
+
+#### Solution
+- I trained two `GradientBoostingRegressor` models on the 10th and 90th percentile of price (quantile loss).
+- The range now scales naturally with the predicted price and can't go negative, with a clip at 0 as a safety net.
+- Both models ship as `lower_pipe.pkl`/`upper_pipe.pkl`, so the range updates automatically on retraining.
+
+### Challenge 5 : Deploying the Model as an API
 
 #### Problem
 - Even after building the ML pipeline, it remained offline and could only be used locally.
@@ -1133,7 +1144,7 @@ upper_pipe.fit(X_train, y_train)
 - I implemented input validation and rate limiting to prevent misuse and ensure stability under load.
 - These improvements made the API accessible, reliable, and production-ready.
 
-### Challenge 5 : Accessibility for Non-Technical Users
+### Challenge 6 : Accessibility for Non-Technical Users
 
 #### Problem
 - Even if the API works correctly, non-technical users may still find it difficult to test and use.
@@ -1143,7 +1154,7 @@ upper_pipe.fit(X_train, y_train)
 - I created an HTML/CSS/JS frontend that sends requests to the API and displays predictions instantly.
 - I also included an example payload in Swagger UI so users can test the API with minimal effort.
 
-### Challenge 6 : Consistent Deployment Across Environments
+### Challenge 7 : Consistent Deployment Across Environments
 
 #### Problem
 - Installing dependencies and setting up the environment manually is time-consuming and error-prone.
@@ -1157,17 +1168,6 @@ upper_pipe.fit(X_train, y_train)
 - This allows the project to run consistently on any system with [Docker](https://www.docker.com/) installed.
 - It eliminates dependency mismatches and OS-specific issues.
 - Same Docker image can be used to deploy on Render, Docker Hub or run locally with a single docker command.
-
-### Challenge 7 : Communicating Prediction Uncertainty
-
-#### Problem
-- A single point prediction doesn't tell a buyer/seller how confident the model actually is.
-- Our initial `prediction ± MAE` range went negative for cheap cars and needed the training-time MAE hardcoded in `.env`.
-
-#### Solution
-- I trained two `GradientBoostingRegressor` models on the 10th and 90th percentile of price (quantile loss).
-- The range now scales naturally with the predicted price and can't go negative, with a clip at 0 as a safety net.
-- Both models ship as `lower_pipe.pkl`/`upper_pipe.pkl`, so the range updates automatically on retraining, no `.env` value to sync.
 
 <hr>
 
