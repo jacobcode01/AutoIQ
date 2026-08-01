@@ -426,7 +426,7 @@ This opens the Swagger UI for testing the API endpoints.
 
 Access the live API [here](https://autoiq.onrender.com/docs) or Click on the Image below.
 
-<a href="https://autoiq.onrender.com/docs"><img title="swagger-ui" src="https://github.com/user-attachments/assets/54293748-a738-4ef9-9b31-1706261ae092"></a>
+<a href="https://autoiq.onrender.com/docs"><img title="swagger-ui" src="https://github.com/user-attachments/assets/920ea2c9-231e-47f2-a1cc-d6ea9541481e"></a>
 
 ### 6. Stop the Docker Container
 When you're done using the application, stop the running container.
@@ -674,7 +674,7 @@ The frontend application files are in the `frontend/` folder :
 
 Access the live website [here](https://themrityunjaypathak.github.io/AutoIQ/) or Click on the Image below.
 
-<a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="frontend-ui" src="https://github.com/user-attachments/assets/838f1c93-4472-4c3c-806f-28ee172add70"></a>
+<a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="frontend-ui" src="https://github.com/user-attachments/assets/2e2b5c1e-252f-46bb-9eaa-7fe0e34b24ce"></a>
 
 <hr>
 
