@@ -412,7 +412,13 @@ http://127.0.0.1:8000/docs
 ```
 
 > [!NOTE]
-> If running the API locally, use the same host (`127.0.0.1`/`localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`.
+> 
+> If running the API locally :
+> 
+> ```bash
+> uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+> ```
+> Use the same host (`127.0.0.1`/`localhost`) for both the frontend and `ALLOWED_ORIGINS` in `.env`.
 > 
 > A mismatch makes browsers treat them as different origins and CORS will fail.
 
