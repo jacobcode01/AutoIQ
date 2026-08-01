@@ -62,7 +62,7 @@
 ## Impact
 - Reduced prediction error by 31% over a LinearRegression baseline, tuning an XGBoost pipeline that cut MAE from ₹1,23,193 to ₹85,281 and raised R² from 0.77 to 0.88.
 - Improved prediction consistency by 62% through hyperparameter tuning, lowering MAE variability from ₹6,435 to ₹2,426 across all car segments.
-- Validated the model on unseen real-world data, achieving ₹87,723 MAE, 0.87 R², and \~14% MAPE, confirming it generalizes well instead of overfitting to training data.
+- Validated the model on real-world unseen data, achieving MAE of ₹87723, R² of 0.87, and MAPE of \~14%, confirming it generalizes well instead of overfitting to training data.
 - Replaced single-number predictions with price ranges using quantile regression, giving buyers and sellers honest uncertainty bounds to negotiate with.
 
 <hr>
