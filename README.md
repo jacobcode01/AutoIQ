@@ -16,8 +16,8 @@
 <a href="https://themrityunjaypathak.github.io/AutoIQ/"><img title="AutoIQ" src="https://github.com/user-attachments/assets/b4437a20-df79-43a7-b70d-363d52de8b1e"></a>
 
 ## Table of Contents
-- [Problem Statement](#problem-statement)
-- [Overview](#overview)
+- [Problem](#problem)
+- [Solution](#solution)
 - [Workflow](#workflow)
 - [Impact](#impact)
 - [Dataset](#dataset)
@@ -32,14 +32,14 @@
 
 <hr>
 
-## Problem Statement
+## Problem
 - In the used-car market, buyers and sellers often struggle to determine a fair price for a vehicle.
 - Incorrect pricing leads to revenue loss when undervalued and slow sales when overpriced.
 - The goal is to provide accurate and transparent pricing by analyzing real-world market listings.
 
 <hr>
 
-## Overview
+## Solution
 - Built and deployed an ML pipeline predicting used-car prices from 2,800+ real Cars24 listings.
 - Benchmarked 6 models and a stacking ensemble, then selected a tuned XGBoost model using leakage-free pipelines.
 - Delivered price ranges via quantile regression instead of point estimates, giving users honest uncertainty.
