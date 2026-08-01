@@ -1162,12 +1162,12 @@ upper_pipe.fit(X_train, y_train)
 
 #### Problem
 - A single point prediction doesn't tell a buyer/seller how confident the model actually is.
-- The initial `prediction ± MAE` range broke down in practice : it went negative for cheap cars, was unrealistically tight for expensive ones, and needed the exact training-time MAE hardcoded in `.env`, something a fresh clone wouldn't have.
+- Our initial `prediction ± MAE` range went negative for cheap cars and needed the training-time MAE hardcoded in `.env`.
 
 #### Solution
-- I replaced it with two `GradientBoostingRegressor` models trained directly on the 10th and 90th percentile of price (quantile loss), reusing the same preprocessing pipeline.
-- The range now scales naturally with the predicted price and can't go negative for realistic inputs, with an additional clip at 0 as a safety net.
-- Both models ship as `lower_pipe.pkl`/`upper_pipe.pkl` alongside the main model, so the range updates automatically whenever the model is retrained, no manual `.env` value to keep in sync.
+- I trained two `GradientBoostingRegressor` models on the 10th and 90th percentile of price (quantile loss).
+- The range now scales naturally with the predicted price and can't go negative, with a clip at 0 as a safety net.
+- Both models ship as `lower_pipe.pkl`/`upper_pipe.pkl`, so the range updates automatically on retraining, no `.env` value to sync.
 
 <hr>
 
