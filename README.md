@@ -974,7 +974,7 @@ Error Stability (CV of MAE) : 2.11%
 <summary>Click Here to view Analysis</summary>
 <br>
 
-| <img title="ap-plot" src="https://github.com/user-attachments/assets/03fd094a-d39c-4215-9ffc-2acbbe9840ea"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/956df3db-18fc-408b-ae22-678deba1a07a"> |
+| <img title="ap-plot" src="https://github.com/user-attachments/assets/00280bf2-cea3-4444-8687-778ea0f44bb3"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/5dff1bed-780c-40bc-9593-0c3602e0bc29"> |
 |---|---|
 
 </details>
@@ -987,7 +987,7 @@ Error Stability (CV of MAE) : 2.11%
 
 | R<sup>2</sup>-Score Curve | Error Curve |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/1fdfdc9f-d4f9-43fa-a344-a1e2a96a21bc"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/36c735f2-bc31-4792-b495-aed22af51f25"> |
 
 </details>
 
@@ -1009,15 +1009,30 @@ param_dist = {
     'model__colsample_bytree': [0.5, 0.75, 1.0],
     'model__min_child_weight': [1, 3, 5]
 }
-
+```
+```python
 # RandomizedSearchCV Object with Cross-Validation
 rcv = RandomizedSearchCV(estimator=pipe, param_distributions=param_dist, cv=k, scoring='neg_mean_absolute_error', n_iter=30, n_jobs=-1, random_state=42)
-
+```
+```python
 # Fitting the RandomizedSearchCV Object
 rcv.fit(X_train, y_train)
-
+```
+```python
+# Best Parameter
+rcv.best_params_
+```
+```python
 # Best Estimator
 best_model = rcv.best_estimator_
+```
+```python
+# Computing Metrics through Cross-Validation after Tuning
+cv_results = cross_validate(estimator=best_model, X=X_train, y=y_train, cv=k, scoring={'mae':'neg_mean_absolute_error','r2':'r2'}, n_jobs=-1)
+print(f"Average Error : {-cv_results['test_mae'].mean():.2f}")
+print(f"Standard Deviation of Error : {cv_results['test_mae'].std():.2f}")
+print(f"Average R2-Score : {cv_results['test_r2'].mean():.2f}")
+print(f"Error Stability (CV of MAE) : {(cv_results['test_mae'].std() / -cv_results['test_mae'].mean()) * 100:.2f}%")
 ```
 </details>
 
