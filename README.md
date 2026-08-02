@@ -696,7 +696,8 @@ cars.head()
 # Creating Features and Target Variable
 X = cars.drop('price', axis=1)
 y = cars['price']
-
+```
+```python
 # Splitting Data into Training and Testing Set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 ```
@@ -944,7 +945,7 @@ Error Stability (CV of MAE) : 2.11%
 
 - The graph shows model performance by average error (lower is better) and average R<sup>2</sup> (higher is better).
 - RandomForestRegressor and XGBRegressor are the top performers (\~₹90,900 MAE & R<sup>2</sup> 0.86).
-- A StackingRegressor was also tried, improving MAE by only \~3% (₹87,884 vs ₹90,900) for 3x the model complexity and inference time.
+- A StackingRegressor was also tried, improving MAE by only \~3% for 3x the model complexity and inference time.
 ```md
   [StackingRegressor]
    RF     XGB     GB
@@ -1060,7 +1061,7 @@ Error Stability (CV of MAE) : 2.85%
 
 | Before Tuning | After Tuning |
 |---|---|
-| <img title="ap-plot" src="https://github.com/user-attachments/assets/03fd094a-d39c-4215-9ffc-2acbbe9840ea"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/78b51241-1b65-4ec6-96a8-7a0d03e1664d"> |
+| <img title="ap-plot" src="https://github.com/user-attachments/assets/00280bf2-cea3-4444-8687-778ea0f44bb3"> | <img title="ap-plot" src="https://github.com/user-attachments/assets/6af0289a-c1da-415f-b890-7caf5fec3399"> |
 
 </details>
 
@@ -1072,11 +1073,11 @@ Error Stability (CV of MAE) : 2.85%
 
 | R<sup>2</sup>-Score Curve (Before Tuning) | R<sup>2</sup>-Score Curve (After Tuning) |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/58316e04-c1b7-4b2c-9ed9-bd683905f639"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/7fcbf45a-6b22-4be0-b175-ea4288920724"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/1fdfdc9f-d4f9-43fa-a344-a1e2a96a21bc"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/c16236ed-019d-44c5-b262-9dec67c7c240"> |
 
 | Error Curve (Before Tuning) | Error Curve (After Tuning) |
 |---|---|
-| <img title="lr-curve" src="https://github.com/user-attachments/assets/eca10b15-b3c9-4a10-ac7b-e31d6c10ae8b"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/66e6989c-93a5-443c-b3db-d7a8e7fe51d9"> |
+| <img title="lr-curve" src="https://github.com/user-attachments/assets/36c735f2-bc31-4792-b495-aed22af51f25"> | <img title="lr-curve" src="https://github.com/user-attachments/assets/7013f64c-4ae7-4f24-94f9-9804dd74d947"> |
 
 </details>
 
@@ -1091,7 +1092,8 @@ Error Stability (CV of MAE) : 2.85%
 ```python
 # Model Performance on Unseen Data
 y_pred_test = best_model.predict(X_test)
-
+```
+```python
 # Mean Absolute Error and R2-Score on Unseen Data
 from sklearn.metrics import mean_absolute_error, r2_score
 print(f'Mean Absolute Error on Unseen Data : {mean_absolute_error(y_test, y_pred_test):.2f}')
@@ -1114,11 +1116,6 @@ Mean Absolute Error on Unseen Data : 87723.02
 R2-Score on Unseen Data : 0.87
 Mean Absolute Percentage Error on Unseen Data : 13.93%
 ```
-
-- MAE and R<sup>2</sup> are useful for comparing models during development, but they don't mean much to a buyer/seller on their own.
-- MAPE translates error into a percentage of the car's own price, so it scales fairly across a ₹1.48L car and a ₹22L car, where a flat ₹87,723 MAE means very different things.
-- \~14% MAPE is the number to quote as the business-facing accuracy metric : "expect the estimate to be off by about 14% on average."
-
 </details>
 
 <hr>
@@ -1130,6 +1127,9 @@ Mean Absolute Percentage Error on Unseen Data : 13.93%
 <br>
 
 ```python
+# Importing GradientBoostingRegressor for Quantile Regression
+from sklearn.ensemble import GradientBoostingRegressor
+
 # Lower Bound Pipeline (10th Percentile)
 lower_pipe = Pipeline(steps=[
     ('preprocessor', ctf),
@@ -1145,6 +1145,13 @@ upper_pipe = Pipeline(steps=[
 # Fitting Both Quantile Pipelines on Training Data
 lower_pipe.fit(X_train, y_train)
 upper_pipe.fit(X_train, y_train)
+
+# Predicting Lower and Upper Bounds on Unseen Data
+y_pred_lower = lower_pipe.predict(X_test)
+y_pred_upper = upper_pipe.predict(X_test)
+
+# Clamping Lower Bound at 0 as a Safety Net (Price can never be Negative)
+y_pred_lower = np.clip(y_pred_lower, a_min=0, a_max=None)
 ```
 </details>
 
@@ -1157,9 +1164,10 @@ upper_pipe.fit(X_train, y_train)
     - MAE is one global average error, it does not scale with the price of the car.
     - For cheap cars, `prediction - MAE` could go **negative**, which makes no sense for a price.
     - For expensive cars, the same flat range was unrealistically tight.
-    - It also required the exact training-time MAE to be hardcoded in `.env`, which anyone cloning the repo would not have.
-- This was replaced with two dedicated `GradientBoostingRegressor` models trained directly on the 10th and 90th percentile of price (quantile loss), reusing the same `ctf` preprocessing pipeline.
-- Both are exported as `lower_pipe.pkl` and `upper_pipe.pkl` alongside the main model, so the API loads them like any other artifact, no manual `.env` value needed.
+    - It also required the exact training-time MAE in `.env`, which anyone cloning the repo would not have.
+- This was replaced with two `GradientBoostingRegressor` models trained directly on the 10th and 90th percentile of price.
+- Both are exported as `lower_pipe.pkl` and `upper_pipe.pkl` alongside the main model,
+- So the API loads them like any other artifact, no manual `.env` value needed.
 - The lower bound is additionally clipped at 0 in the API as a safety net.
 
 </details>
