@@ -1165,7 +1165,7 @@ y_pred_lower = np.clip(y_pred_lower, a_min=0, a_max=None)
     - For cheap cars, `prediction - MAE` could go **negative**, which makes no sense for a price.
     - For expensive cars, the same flat range was unrealistically tight.
     - It also required the exact training-time MAE in `.env`, which anyone cloning the repo would not have.
-- This was replaced with two `GradientBoostingRegressor` models trained directly on the 10th and 90th percentile of price.
+- This was replaced with two `GradientBoostingRegressor` models trained directly on the P<sub>10</sub> and P<sub>90</sub> of price.
 - Both are exported as `lower_pipe.pkl` and `upper_pipe.pkl` alongside the main model,
 - So the API loads them like any other artifact, no manual `.env` value needed.
 - The lower bound is additionally clipped at 0 in the API as a safety net.
