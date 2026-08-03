@@ -332,13 +332,13 @@ The final dataset consists of 2,800+ unique car listings, with each record conta
 
 | Column | Description |
 |:---|:---|
-| model_name | Model name of car (2014 Hyundai Grand i10, etc.) |
-| fuel_type | Fuel type (Petrol, Diesel, CNG, Electric) |
-| transmission | Transmission type (Automatic or Manual) |
-| owner | Previous owners count (1st owner, 2nd owner, 3rd owner, etc.) |
-| engine_capacity | Engine size (in cc) |
-| km_driven | Total distance traveled (in km) |
-| price | Selling price (target variable) |
+| `model_name` | Model name of car (2014 Hyundai Grand i10, etc.) |
+| `fuel_type` | Fuel type (Petrol, Diesel, CNG, Electric) |
+| `transmission` | Transmission type (Automatic or Manual) |
+| `owner` | Previous owners count (1st owner, 2nd owner, 3rd owner, etc.) |
+| `engine_capacity` | Engine size (in cc) |
+| `km_driven` | Total distance traveled (in km) |
+| `price` | Selling price (target variable) |
 
 </details>
 
